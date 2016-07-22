@@ -9,6 +9,16 @@ When you're writing a color scheme you end up having some concerns:
 
 Now what themeX is? It's pretty much what we told you. You define your theme once, using it's adaptors; themeX generates themes for many of the supported editors, You also define both dark and light versions of your theme at one place and themeX takes care of the rest and also it makes sure your colors are being rendered just right in the runtime.
 
+## How to have it?
+```
+npm install -g themex
+```
+Create a folder for your file theme. and then use:
+```
+themex init
+```
+To make the folder into a themeX project.
+
 <br />
 <a href="http://www.karyfoundation.org/">
     <img src="http://www.karyfoundation.org/foundation/logo/github-full-horse.png" width="250"/>
