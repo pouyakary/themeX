@@ -1,0 +1,35 @@
+{
+  "name": "thema",
+  "version": "0.0.1",
+  "description": "A general color theme builder for Visual Studio Code, Sublime Text, Text Mate and Atom",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karyfoundation/thema.git"
+  },
+  "keywords": [
+    "Color",
+    "Themes",
+    "Syntaxt",
+    "Themes",
+    "Color",
+    "Schemes",
+    "Visual",
+    "Studio",
+    "Code",
+    "Code",
+    "Atom",
+    "Sublime",
+    "Kary",
+    "Foundation"
+  ],
+  "author": "Kary Foundation, Inc.",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/karyfoundation/thema/issues"
+  },
+  "homepage": "https://github.com/karyfoundation/thema#readme"
+}
