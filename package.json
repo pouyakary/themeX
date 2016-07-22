@@ -1,5 +1,5 @@
 {
-  "name": "thema",
+  "name": "themex",
   "version": "0.0.1",
   "description": "A general color theme builder for Visual Studio Code, Sublime Text, Text Mate and Atom",
   "main": "build/main.js",
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/karyfoundation/thema.git"
+    "url": "git+https://github.com/karyfoundation/themeX.git"
   },
   "keywords": [
     "Color",
@@ -26,10 +26,13 @@
     "Kary",
     "Foundation"
   ],
-  "author": "Kary Foundation, Inc.",
+  "author": "pmkary",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/karyfoundation/thema/issues"
+    "url": "https://github.com/karyfoundation/themeX/issues"
   },
-  "homepage": "https://github.com/karyfoundation/thema#readme"
+  "homepage": "https://github.com/karyfoundation/themeX#readme",
+  "dependencies": {
+    "js-yaml": "^3.6.1"
+  }
 }
