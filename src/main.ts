@@ -15,14 +15,11 @@
     import builder  = require('./buildcore');
 
 //
-// ─── CONSTANTS ──────────────────────────────────────────────────────────────────
-//
-
-    const themeXFileFormat = '.themeX';
-
-//
 // ─── MAIN ───────────────────────────────────────────────────────────────────────
 //
+
+    // starting the software here...
+    main( );
 
     /** Where the software starts. main basically acts as an arg switcher. */
     function main ( ) {
@@ -39,8 +36,6 @@
             showHelp( );
         }
     }
-
-    main( );
 
 //
 // ─── BUILD WITH CWD ─────────────────────────────────────────────────────────────
@@ -68,12 +63,6 @@
     }
 
 //
-// ─── LOAD MODEL ─────────────────────────────────────────────────────────────────
-//
-
-
-
-//
 // ─── REPORT ERROR ───────────────────────────────────────────────────────────────
 //
 
@@ -86,7 +75,17 @@
 //
 
     function showHelp ( ) {
-        
+        console.log(
+            "\n" +
+            "  ┌─── themeX ─────────────────────────────────────────────┐\n" +
+            "  │                                                        │\n" +
+            "  │  themeX provides a simple universal definition for     │\n" +
+            "  │  IDE/editor color schemes. To use it please read the   │\n" +
+            "  │  documentation from:                                   │\n" +
+            "  │  https://github.com/karyfoundation/themeX/wiki         │\n" +
+            "  │                                                        │\n" +
+            "  └────────────────────────────────────────────────────────┘\n"
+        );
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
