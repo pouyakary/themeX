@@ -1,0 +1,48 @@
+{
+    "type": "object",
+    "properties": {
+        "version": {
+            "type": "string"
+        },
+        "author": {
+            "type": "string"
+        },
+        "description": {
+            "type": "string"
+        },
+        "colorSpaceName": {
+            "type": "string",
+            "optional": true
+        },
+        "themes": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "name": { "type": "string" },
+                    "style": { "type": "string" },
+                    "uuid": { "type" : "string" },
+                    "colors": {
+                        "type": "object"
+                    },
+                    "settings": {
+                        "type": "object"
+                    }
+                }
+            }
+        },
+        "rules": {
+            "type": "array",
+            "items": {
+                "name": { "type": "string" },
+                "scope": { "type": "string", "optional": true },
+                "scopes": {
+                    "type": "array",
+                    "items": { "type": "string" },
+                    "optional": true
+                },
+                "color": { "type": "string" }
+            }
+        }
+    }
+}
