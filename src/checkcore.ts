@@ -12,23 +12,32 @@
     import fs   = require('fs');
     import path = require('path');
     import gi   = require('./interfaces');
-    import ajv  = require('ajv');
- 
+    import jsen = require('jsen');
+
 //
 // ─── CHECKER ────────────────────────────────────────────────────────────────────
 //
 
     export = ( bundle: gi.bundle.base ): boolean => {
-        
+        if ( !checkProject( bundle.project ) ) {
+            return false;
+        }
+        return true;
     }
 
 //
 // ─── CHECK PROJECT ──────────────────────────────────────────────────────────────
 //
 
-    function checkProject ( ) {
-        let scheme = loadScheme('themeX.project.schema.json');
-
+    /** Checks to see if a given  */
+    function checkProject ( project: gi.bundle.project ) {
+        let scheme = loadScheme( 'themeX.project.schema.json' );
+        let validate = jsen( scheme );
+        if ( validate( project ) ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
 //
