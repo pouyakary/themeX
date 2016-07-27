@@ -1,4 +1,7 @@
 {
+    "title": "JSON schema for themeX's inner theme.yml files",
+    "$schema": "http://json-schema.org/draft-04/schema#",
+
     "type": "object",
     "properties": {
         "version": {
