@@ -3,33 +3,56 @@
 // ─── LOADINGS ───────────────────────────────────────────────────────────────────
 //
 
+    import gi       = require('./interfaces');
+    import jsYaml   = require('js-yaml');
     import fs       = require('fs');
     import path     = require('path');
-    import jsYaml   = require('js-yaml');
 
 //
-// ─── SETTINGS LOADER ────────────────────────────────────────────────────────────
+// ─── ENUMS ──────────────────────────────────────────────────────────────────────
 //
 
-    /** Loads the project settings */
-    export function loadSettings ( ) {
-
+    enum fileType {
+        project, settings
     }
 
 //
-// ─── PROJECT LOADER ─────────────────────────────────────────────────────────────
+// ─── LOAD BY FILE NAME ──────────────────────────────────────────────────────────
+//
+
+    export function loadProjectByCWD ( address: string ) {
+        return loadProjectByFile( process.cwd( ) );
+    }
+
+//
+// ─── LOAD BY CURRENT WORKING DIRECTORY ──────────────────────────────────────────
 //
 
     /** Loads the project main yaml file */
-    export function project ( address: string ) {
-        
+    export function loadProjectByFile ( file: string ): gi.bundle.IThemeXBaseProjectBundle {
+        if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
+            return {
+                project:  <gi.bundle.project>  importFileObject( fileType.project, file ),
+                settings: <gi.bundle.IThemeXSettings> importFileObject( fileType.settings, file )
+            }
+        } else {
+            throw "Not a themeX project.";
+        }
     }
 
 //
-// ─── FIND AND IMPORT ────────────────────────────────────────────────────────────
+// ─── IMPORT FILE ────────────────────────────────────────────────────────────────
 //
 
-    
+    function importFileObject ( kind: fileType, cwd: string ): Object {
+        let address: string;
+        if ( fileType.project ) {
+            address = path.join( cwd, 'theme.yml' );
+        } else {
+            address = path.join( cwd, 'project.yml')
+        }
+        return importYAML( address );
+    }
 
 //
 // ─── IMPORT YAML ────────────────────────────────────────────────────────────────
