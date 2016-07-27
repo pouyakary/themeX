@@ -21,6 +21,9 @@ export module bundle {
             /** Author of the theme */
             author: string;
 
+            /** Colorspace name */
+            colorSpaceName?: string;
+
             /** Theme plates */
             themes: theme[ ];
 
@@ -80,7 +83,7 @@ export module bundle {
     // ─── PROJECT SETTINGS ───────────────────────────────────────────────────────────
     //
 
-        export interface IThemeXSettings {
+        export interface settings {
 
         }
 
@@ -93,9 +96,9 @@ export module bundle {
     // ─── PROJECT OBJECT ─────────────────────────────────────────────────────────────
     //
 
-        export interface IThemeXBaseProjectBundle {
+        export interface base {
             project: project;
-            settings: IThemeXSettings;
+            settings: settings;
         }
 
     // ────────────────────────────────────────────────────────────────────────────────
