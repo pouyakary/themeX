@@ -57,7 +57,6 @@
         } else {
             address = path.join( cwd, 'project.yml')
         }
-        console.log( address );
         return importYAML( address );
     }
 

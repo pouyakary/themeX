@@ -6,15 +6,13 @@
 //  Authored by Pouya Kary <k@karyfoundation.org>
 //
 
-/// <reference path="file-interfaces.ts" />
-
-
 //
 // ─── INCLUDES ───────────────────────────────────────────────────────────────────
 //
 
     import gi       = require('./interfaces');
     import loader   = require('./loader');
+    import builder  = require('./buildcore');
 
 //
 // ─── CONSTANTS ──────────────────────────────────────────────────────────────────
@@ -49,17 +47,16 @@
 //
 
     function buildCWD ( ) {
-        let bundle = loader.loadProjectByCWD( );
-        console.log( bundle );
+        buildByFile( process.cwd( ) );
     }
 
 //
 // ─── BUILD BY FILE ──────────────────────────────────────────────────────────────
 //
 
-    function buildByFile ( file: string ) {
+    function buildByFile ( file: string ): boolean {
         let bundle = loader.loadProjectByFile( file );
-        
+        return builder( bundle );
     }
 
 //
