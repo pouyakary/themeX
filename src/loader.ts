@@ -20,7 +20,7 @@
 // ─── LOAD BY FILE NAME ──────────────────────────────────────────────────────────
 //
 
-    export function loadProjectByCWD ( address: string ) {
+    export function loadProjectByCWD ( ) {
         return loadProjectByFile( process.cwd( ) );
     }
 
@@ -29,14 +29,14 @@
 //
 
     /** Loads the project main yaml file */
-    export function loadProjectByFile ( file: string ): gi.bundle.IThemeXBaseProjectBundle {
+    export function loadProjectByFile ( file: string ): gi.bundle.base {
         if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
             return {
                 project:  <gi.bundle.project>  importFileObject( fileType.project, file ),
-                settings: <gi.bundle.IThemeXSettings> importFileObject( fileType.settings, file )
+                settings: <gi.bundle.settings> importFileObject( fileType.settings, file )
             }
         } else {
-            throw "Not a themeX project.";
+            return undefined;
         }
     }
 
@@ -46,11 +46,12 @@
 
     function importFileObject ( kind: fileType, cwd: string ): Object {
         let address: string;
-        if ( fileType.project ) {
+        if ( kind == fileType.project ) {
             address = path.join( cwd, 'theme.yml' );
         } else {
             address = path.join( cwd, 'project.yml')
         }
+        console.log( address );
         return importYAML( address );
     }
 
