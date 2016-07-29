@@ -11,7 +11,7 @@
 //
 
     import themeX  = require( '../../themeX' );
-    import tmTheme = require( '../../libs/tmtheme' );
+    import tmTheme = require( '../../libs/tmTheme' );
 
 //
 // ─── PACKAGE INFORMATION ────────────────────────────────────────────────────────
@@ -32,7 +32,7 @@
             theme: project,
             index: 0
         }
-        tmTheme( currentTheme );
+        console.log( tmTheme( currentTheme ) );
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
