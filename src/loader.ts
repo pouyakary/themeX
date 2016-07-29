@@ -39,7 +39,7 @@
         if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
             themeX.print('parsing the theme files.');
             return {
-                project:  <themeX.IBundle.project>  importFileObject(
+                project: <themeX.IBundle.project>  importFileObject(
                     fileType.project, file ),
                 settings: <themeX.IBundle.settings> importFileObject(
                     fileType.settings, file )

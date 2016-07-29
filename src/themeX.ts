@@ -40,7 +40,7 @@
 //
 
     export function report ( errorNumber: number, errorMessage: string ) {
-        console.log(`----> themeX E${ errorNumber }: ${ errorMessage }`);
+        console.log(`──▶︎ themeX E${ errorNumber }: ${ errorMessage }`);
     }
 
 //
@@ -48,7 +48,7 @@
 //
 
     export function print ( input: any ) {
-        console.log(`----> themeX: ${ input }`);
+        console.log(`──▶︎ themeX: ${ input }`);
     }
 
 //
