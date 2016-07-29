@@ -45,12 +45,12 @@
             result.push( addPListKeyInline( name, themeX.parseColor( theme, color ) ) );
         }
         
-        addSettingColor( 'background',      settings.background     );
-        addSettingColor( 'foreground',      settings.foreground     );
-        addSettingColor( 'caret',           settings.caret          );
-        addSettingColor( 'invisibles',      settings.invisibles     );
-        addSettingColor( 'lineHighlight',   settings.lineHighlight  );
-        addSettingColor( 'selection',       settings.selection      );
+        addSettingColor( 'background'   , settings.background     );
+        addSettingColor( 'foreground'   , settings.foreground     );
+        addSettingColor( 'caret'        , settings.caret          );
+        addSettingColor( 'invisibles'   , settings.invisibles     );
+        addSettingColor( 'lineHighlight', settings.lineHighlight  );
+        addSettingColor( 'selection'    , settings.selection      );
 
         let insideCode = result.join('');
         return `<!-- Main Color Settings -->${ addPListKeyBlock( 'settings', result.join('') )}`;
