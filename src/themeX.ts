@@ -160,6 +160,7 @@
             export interface base {
                 project: project;
                 settings: settings;
+                path: string;
             }
 
         // ─────────────────────────────────────────────────────────────────

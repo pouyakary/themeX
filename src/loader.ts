@@ -42,7 +42,8 @@
                 project: <themeX.IBundle.project>  importFileObject(
                     fileType.project, file ),
                 settings: <themeX.IBundle.settings> importFileObject(
-                    fileType.settings, file )
+                    fileType.settings, file ),
+                path: file
             }
         } else {
             return undefined;
