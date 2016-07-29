@@ -21,7 +21,7 @@
 // ─── DEFS ───────────────────────────────────────────────────────────────────────
 //
 
-    const pListHead = `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">`;
+    const pListHead = `<?xml version="1.0" encoding="UTF-8"?>\n<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n<plist version="1.0">\n<dict>`;
 
 //
 // ─── TM THEME GENERATOR ─────────────────────────────────────────────────────────
@@ -51,7 +51,7 @@
         themeXML.push( generateTmThemeSettings( ) );
 
         // finalizing...
-        return `${ pListHead }${ themeX.indent( themeXML.join('') ) }\n</plist>\n</xml>`;
+        return `${ pListHead }${ themeX.indent( themeXML.join('') ) }\n</dict>\n</plist>`;
     }
 
 //
@@ -120,9 +120,12 @@
         }
 
         result.push(
-            addPListKeyInline('color', themeX.parseColor( theme, rule.color ) ) );
+            addPListKeyBlock('settings', 
+                addPListKeyInline('foreground', 
+                    themeX.parseColor( theme, rule.color )
+        )));
 
-        return addPListKeyBlock( 'dict', result.join('') );
+        return result.join('');
     }
 
 //
@@ -158,7 +161,7 @@
 //
 
     function addPListKeyBlock ( key: string, text: string ): string {
-        return `\n<key>${ key }</key>\n<string>${ themeX.indent( text ) }\n</string>`;
+        return `\n<key>${ key }</key>\n<dict>${ themeX.indent( text ) }\n</dict>`;
     }
 
 //
