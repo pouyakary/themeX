@@ -10,20 +10,29 @@
 //
 
     export function parseColor ( theme: ICurrentTheme, color: string ): string {
-        if ( /^\#[A-F0-9]{6}$/i.test( color ) ) {
-            return color.toUpperCase( );
+        function onBadColor ( ) {
+            if ( theme.theme.project.themes[ theme.index ].baseColor === 'dark' ) {
+                return '#FFFFFF';
+            } else {
+                return '#000000';
+            }
+        }
+
+        if ( /^\#?[A-F0-9]{6}$/i.test( color ) ) {
+            if ( color.startsWith('#') ) {
+                return color.toUpperCase( );
+            } else {
+                return `#${color.toUpperCase( ) }`;
+            }
         } else if ( /^\.[a-z]([a-z0-9\-]*[a-z0-9])?$/i.test( color ) ) {
             let v = theme.theme.project.themes[ theme.index ].colors[ color.substr( 1 ) ];
             if ( v !== undefined || v !== null ) {
                 return `#${ v.toUpperCase( ) }`;
             } else {
-                if ( theme.theme.project.themes[ theme.index ].baseColor === 'dark' ) {
-                    return '#FFFFFF';
-                } else {
-                    return '#000000';
-                }
+                onBadColor( );
             }
         }
+        return onBadColor( );
     }
 
 //
