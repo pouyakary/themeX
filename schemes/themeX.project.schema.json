@@ -25,6 +25,7 @@
                     "name": { "type": "string" },
                     "style": { "type": "string" },
                     "uuid": { "type" : "string" },
+                    "baseTheme": { "type": "string" },
                     "colors": {
                         "type": "object"
                     },
