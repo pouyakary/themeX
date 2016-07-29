@@ -29,8 +29,43 @@
 
     export = ( currentTheme: themeX.ICurrentTheme ) => {
         theme = currentTheme;
-        console.log( generateTmThemeSettings( ) );
-        console.log( generateMainColorSchemeSettings( ) );
+
+        console.log( generateTmThemeSettingsArray( ) );
+    }
+
+//
+// ─── GENERATE THEME ─────────────────────────────────────────────────────────────
+//
+
+    function generateTheme ( ) {
+
+    }
+
+//
+// ─── GENERATE TM THEME SETTINGS ARRAY ───────────────────────────────────────────
+//
+
+    function generateTmThemeSettingsArray ( ): string {
+        let settings: string[ ] = [ ];
+        // main settings
+        settings.push( generateMainColorSchemeSettings( ) );
+
+        // comment...
+        let commentRule: themeX.IBundle.rule = {
+            color: themeX.parseColor( 
+                theme, theme.theme.project.themes[ theme.index ].settings.comment ),
+            scope: 'comment',
+            name: 'Comment'
+        }
+        settings.push( generateRuleXML( commentRule ) );
+
+        // rest of the rules
+        theme.theme.project.rules.forEach( rule => {
+            settings.push( generateRuleXML( rule ) );
+        });
+
+        // done
+        return addPListSettingsArray( settings );
     }
 
 //
@@ -52,8 +87,29 @@
         addSettingColor( 'lineHighlight', settings.lineHighlight  );
         addSettingColor( 'selection'    , settings.selection      );
 
-        let insideCode = result.join('');
-        return `<!-- Main Color Settings -->${ addPListKeyBlock( 'settings', result.join('') )}`;
+        return `<!-- Main Color Settings -->${ addPListKeyBlock( 'settings', result.join('') ) }`;
+    }
+
+//
+// ─── GENERATE RULE ───────────────────────────────────────────────────────────────
+//
+
+    function generateRuleXML ( rule: themeX.IBundle.rule ): string {
+        let result = [ addPListKeyInline( 'name', rule.name ) ];
+
+        if ( rule.scope !== null && rule.scope !== undefined ) {
+            result.push( addPListKeyInline( 'scope', rule.scope ) );
+        } else if ( rule.scopes !== null && rule.scopes !== undefined ) {
+            result.push( addPListKeyInline('scope', rule.scopes.join(', ') ) );
+        } else {
+            themeX.report( 3, `bad scope definition: "${ rule.name }".`)
+            return '';
+        }
+
+        result.push(
+            addPListKeyInline('color', themeX.parseColor( theme, rule.color ) ) );
+
+        return addPListKeyBlock( 'dict', result.join('') );
     }
 
 //
@@ -90,6 +146,17 @@
 
     function addPListKeyBlock ( key: string, text: string ): string {
         return `\n<key>${ key }</key>\n<string>${ themeX.indent( text ) }\n</string>`;
+    }
+
+//
+// ─── ADD P LIST DICT BLOCK ──────────────────────────────────────────────────────
+//
+
+    function addPListSettingsArray ( array: string[ ] ) {
+        let result = array.map( dict => {
+            return `\n<dict>${ themeX.indent( dict ) }\n</dict>`;
+        });
+        return `\n<key>settings</key>\n<array>${ themeX.indent( result.join('') ) }\n</array>`;
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
