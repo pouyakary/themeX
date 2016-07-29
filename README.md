@@ -1,5 +1,12 @@
 
-# themeX
+<img src="https://cloud.githubusercontent.com/assets/2157285/17261214/d2ee31f4-55e9-11e6-9e8e-4980ffe43c68.png" width="100" />
+
+**The Universal Color Scheme Generator**
+
+## What is this?
+
+![](https://cloud.githubusercontent.com/assets/2157285/17261046/33ef0d94-55e9-11e6-8515-e2b3f7c5bd2b.jpg)
+
 When you're writing a color scheme you end up having some concerns:
 - There are many editors to support. Fortunately Visual Studio Code, Sublime Text and TextMate have a shared format `tmTheme` that is also supported by Atom through a convertor. However it still remains support for major tools like Visual Studio, Xcode, Xamarin Studio, IDEs by Jetbrains, LightTable, Qt Creator and many many many other...
 
