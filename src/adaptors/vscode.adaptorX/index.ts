@@ -10,18 +10,18 @@
 // ─── IMPORTS ────────────────────────────────────────────────────────────────────
 //
 
-    import themeX = require( '../../themeX' );
+    import themeX  = require( '../../themeX' );
     import tmTheme = require( '../../libs/tmtheme' );
 
 //
 // ─── PACKAGE INFORMATION ────────────────────────────────────────────────────────
 //
 
-    export const id = 'org.karyfoundation.themeX.vscode';
-    export const editor = 'Visual Studio Code';
-    export const version = '1.0.0'
-    export const name = 'Visual Studio Code ThemeX Generator';
-    export const author = 'Kary Foundation, Inc.';
+    export const id         = 'org.karyfoundation.themeX.vscode';
+    export const editor     = 'Visual Studio Code';
+    export const version    = '1.0.0'
+    export const name       = 'Visual Studio Code ThemeX Generator';
+    export const author     = 'Kary Foundation, Inc.';
 
 //
 // ─── BUILDER FOR VISUAL STUDIO CODE ─────────────────────────────────────────────
