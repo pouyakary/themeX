@@ -30,15 +30,15 @@
     export = ( currentTheme: themeX.ICurrentTheme ) => {
         theme = currentTheme;
         console.log( generateTmThemeSettings( ) );
-        console.log( themeX.parseColor( theme, '.red' ) );
+        console.log( generateMainColorSchemeSettings( ) );
     }
 
 //
 // ─── GENERATE MAIN COLOR SETTINGS ───────────────────────────────────────────────
 //
 
-    function generateMainColorSchemeSettings ( currentTheme: themeX.ICurrentTheme ) {
-        let settings = currentTheme.theme.project.themes[ currentTheme.index ].settings;
+    function generateMainColorSchemeSettings ( ) {
+        let settings = theme.theme.project.themes[ theme.index ].settings;
         let result: string[ ] = [ ];
 
         function addSettingColor ( name: string, color: string ) {
@@ -52,7 +52,7 @@
         addSettingColor( 'lineHighlight',   settings.lineHighlight  );
         addSettingColor( 'selection',       settings.selection      );
 
-        return result.join('\n');
+        return result.join('');
     }
 
 //
