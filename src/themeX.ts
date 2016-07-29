@@ -40,7 +40,15 @@
 //
 
     export function report ( errorNumber: number, errorMessage: string ) {
-        console.log(`-> themeX E${ errorNumber }: ${ errorMessage }`);
+        console.log(`----> themeX E${ errorNumber }: ${ errorMessage }`);
+    }
+
+//
+// ─── THEMEX LOG ─────────────────────────────────────────────────────────────────
+//
+
+    export function print ( input: any ) {
+        console.log(`----> themeX: ${ input }`);
     }
 
 //

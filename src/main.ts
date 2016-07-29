@@ -50,6 +50,7 @@
 //
 
     function buildByFile ( file: string ): boolean {
+        themeX.print('initializing');
         let bundle = loader.loadProjectByFile( file );
         return builder( bundle );
     }
