@@ -39,16 +39,20 @@
 
     function generateMainColorSchemeSettings ( currentTheme: themeX.ICurrentTheme ) {
         let settings = currentTheme.theme.project.themes[ currentTheme.index ].settings;
-        let resultingTheme = '';
-        resultingTheme += addPListKey('caret', settings.caret );
-    }
+        let result: string[ ] = [ ];
 
-//
-// ─── ADD COLOR ──────────────────────────────────────────────────────────────────
-//
+        function addSettingColor ( name: string, color: string ) {
+            result.push( addPListKey( name, themeX.parseColor( theme, color ) ) );
+        }
+        
+        addSettingColor( 'background',      settings.background     );
+        addSettingColor( 'foreground',      settings.foreground     );
+        addSettingColor( 'caret',           settings.caret          );
+        addSettingColor( 'invisibles',      settings.invisibles     );
+        addSettingColor( 'lineHighlight',   settings.lineHighlight  );
+        addSettingColor( 'selection',       settings.selection      );
 
-    function addSettingColor ( currentTheme ) {
-
+        return result.join('\n');
     }
 
 //
