@@ -25,7 +25,11 @@
     function main ( ) {
         let args = process.argv.slice( 2 );
         if ( args.length == 0 ) {
-            buildCWD( );
+            if ( process.cwd( ).toLowerCase( ).endsWith( '.themex' ) ) {
+                buildCWD( );
+            } else {
+                showHelp( );
+            }
         } else if ( args.length === 1 ) {
             if ( args[ 0 ].toLowerCase( ).endsWith( '.themex' ) ) {
                 buildByFile( args[ 0 ] );
