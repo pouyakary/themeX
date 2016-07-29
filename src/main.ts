@@ -13,6 +13,7 @@
     import gi       = require('./interfaces');
     import loader   = require('./loader');
     import builder  = require('./buildcore');
+    import report   = require('./report');
 
 //
 // ─── MAIN ───────────────────────────────────────────────────────────────────────
@@ -60,14 +61,6 @@
 
     function build ( bundle: gi.bundle.base ) {
         report( 1 , "hello world" );
-    }
-
-//
-// ─── REPORT ERROR ───────────────────────────────────────────────────────────────
-//
-
-    function report ( errorNumber: number, errorMessage: string ) {
-        console.log(`-> themeX E${ errorNumber }: ${ errorMessage }`);
     }
 
 //
