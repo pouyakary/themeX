@@ -1,5 +1,4 @@
 
-
 //
 // vscode - A general color scheme theme generator
 //  Copyright 2016 Kary Foundation, Inc. All Rights Reserved.
@@ -27,12 +26,24 @@
 // ─── BUILDER FOR VISUAL STUDIO CODE ─────────────────────────────────────────────
 //
 
-    export function generate ( project: themeX.IBundle.base ) {
-        let currentTheme: themeX.ICurrentTheme = {
-            theme: project,
-            index: 0
+    export function generate ( project: themeX.IBundle.base, address: string ) {
+
+        for ( var index = 0; index < project.project.themes.length; index++ ) {
+            let currentTheme: themeX.ICurrentTheme = {
+                theme: project,
+                index: 0
+
+            }
+            
         }
-        console.log( tmTheme( currentTheme ) );
+    }
+
+//
+// ─── GENERATE THEME ─────────────────────────────────────────────────────────────
+//
+
+    function generateTheme ( ) {
+
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
