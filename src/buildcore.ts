@@ -20,7 +20,7 @@
 
     interface IAdaptor {
         id: string;
-        generate ( project: themeX.IBundle.base );
+        generate ( project: themeX.IBundle.base, address: string );
         editor: string;
         version: string;
         name?: string;
@@ -31,26 +31,26 @@
 // ─── BUILD ──────────────────────────────────────────────────────────────────────
 //
 
-    export = ( project: themeX.IBundle.base ): boolean => {
+    export = ( project: themeX.IBundle.base , address: string ): boolean => {
         if ( !check( project ) ) return false;
-        applyBuild( project );
+        applyBuild( project, address );
     }
 
 //
 // ─── APPLY BUILD TO PROJECT ─────────────────────────────────────────────────────
 //
 
-    function applyBuild( project: themeX.IBundle.base ) {
+    function applyBuild( project: themeX.IBundle.base, address: string ) {
         let adaptorDirectory = getAdaptorDirectoryLocation( );
         fs.readdir( adaptorDirectory, ( err , files ) => {
             files.forEach( subDirectory => {
                 if ( /.adaptorX$/.test( subDirectory ) ) {
-                    var adaptor = <IAdaptor> require( 
-                        path.join( adaptorDirectory , subDirectory ) 
+                    var adaptor = <IAdaptor> require(
+                        path.join( adaptorDirectory , subDirectory )
                     );
                     try {
                         themeX.print(`running adaptor version ${ adaptor.version } for "${ adaptor.editor }".`);
-                        adaptor.generate( project );
+                        adaptor.generate( project, address );
                     } catch ( error ) {
                         themeX.report( 2 , `-> themeX error: Could not generate theme for ${ adaptor.editor }.\n   editor: ${ adaptor.id }` );
                     }
