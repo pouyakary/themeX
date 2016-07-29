@@ -39,10 +39,10 @@
 
     function generateMainColorSchemeSettings ( ) {
         let settings = theme.theme.project.themes[ theme.index ].settings;
-        let result: string[ ] = [ ];
+        let result: string[ ] = [  ];
 
         function addSettingColor ( name: string, color: string ) {
-            result.push( addPListKey( name, themeX.parseColor( theme, color ) ) );
+            result.push( addPListKeyInline( name, themeX.parseColor( theme, color ) ) );
         }
         
         addSettingColor( 'background',      settings.background     );
@@ -52,7 +52,8 @@
         addSettingColor( 'lineHighlight',   settings.lineHighlight  );
         addSettingColor( 'selection',       settings.selection      );
 
-        return result.join('');
+        let insideCode = result.join('');
+        return `<!-- Main Color Settings -->${ addPListKeyBlock( 'settings', result.join('') )}`;
     }
 
 //
@@ -62,15 +63,15 @@
     function generateTmThemeSettings ( ): string {
         let settingsXML = '<!-- Theme Settings -->';
 
-        settingsXML += addPListKey( 'uuid',
+        settingsXML += addPListKeyInline( 'uuid',
             theme.theme.project.themes[ theme.index ].uuid );
 
-        settingsXML += addPListKey( 'semanticClass',
+        settingsXML += addPListKeyInline( 'semanticClass',
             `theme.${ theme.theme.project.themes[ theme.index ].baseColor }.${ theme.theme.project.themes[ theme.index ].uuid }`);
 
-        settingsXML += addPListKey( 'author', theme.theme.project.author );
+        settingsXML += addPListKeyInline( 'author', theme.theme.project.author );
 
-        settingsXML += addPListKey( 'colorSpaceName', 'sRGB' );
+        settingsXML += addPListKeyInline( 'colorSpaceName', 'sRGB' );
 
         return settingsXML;
     }
@@ -79,8 +80,16 @@
 // ─── P LIST ADD KEY ─────────────────────────────────────────────────────────────
 //
 
-    function addPListKey ( key: string, text: string ): string {
+    function addPListKeyInline ( key: string, text: string ): string {
         return `\n<key>${ key }</key>\n<string>${ text }</string>`;
+    }
+
+//
+// ─── ADD P LIST BLACK ───────────────────────────────────────────────────────────
+//
+
+    function addPListKeyBlock ( key: string, text: string ): string {
+        return `\n<key>${ key }</key>\n<string>${ themeX.indent( text ) }\n</string>`;
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
