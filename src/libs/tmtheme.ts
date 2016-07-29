@@ -27,18 +27,31 @@
 // ─── TM THEME GENERATOR ─────────────────────────────────────────────────────────
 //
 
-    export = ( currentTheme: themeX.ICurrentTheme ) => {
+    export = ( currentTheme: themeX.ICurrentTheme ): string => {
         theme = currentTheme;
-
-        console.log( generateTmThemeSettingsArray( ) );
+        return generateTheme( );
     }
 
 //
 // ─── GENERATE THEME ─────────────────────────────────────────────────────────────
 //
 
-    function generateTheme ( ) {
+    function generateTheme ( ): string {
+        // adding header
+        let themeXML: string[ ] = [ ];
 
+        // adding the name
+        themeXML.push(
+            addPListKeyInline( 'name', theme.theme.project.themes[ theme.index ].name ) );
+
+        // adding the main buddy
+        themeXML.push( generateTmThemeSettingsArray( ) );
+
+        // adding the main settings
+        themeXML.push( generateTmThemeSettings( ) );
+
+        // finalizing...
+        return `${ pListHead }${ themeX.indent( themeXML.join('') ) }\n</plist>\n</xml>`;
     }
 
 //
@@ -87,7 +100,7 @@
         addSettingColor( 'lineHighlight', settings.lineHighlight  );
         addSettingColor( 'selection'    , settings.selection      );
 
-        return `<!-- Main Color Settings -->${ addPListKeyBlock( 'settings', result.join('') ) }`;
+        return `\n<!-- Main Color Settings -->${ addPListKeyBlock( 'settings', result.join('') ) }`;
     }
 
 //
@@ -117,7 +130,7 @@
 //
 
     function generateTmThemeSettings ( ): string {
-        let settingsXML = '<!-- Theme Settings -->';
+        let settingsXML = '\n<!-- Theme Settings -->';
 
         settingsXML += addPListKeyInline( 'uuid',
             theme.theme.project.themes[ theme.index ].uuid );
