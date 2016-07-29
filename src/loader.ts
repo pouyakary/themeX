@@ -9,7 +9,7 @@
 // ─── LOADINGS ───────────────────────────────────────────────────────────────────
 //
 
-    import gi       = require('./interfaces');
+    import themeX   = require('./themeX');
     import jsYaml   = require('js-yaml');
     import fs       = require('fs');
     import path     = require('path');
@@ -35,11 +35,13 @@
 //
 
     /** Loads the project main yaml file */
-    export function loadProjectByFile ( file: string ): gi.bundle.base {
+    export function loadProjectByFile ( file: string ): themeX.IBundle.base {
         if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
             return {
-                project:  <gi.bundle.project>  importFileObject( fileType.project, file ),
-                settings: <gi.bundle.settings> importFileObject( fileType.settings, file )
+                project:  <themeX.IBundle.project>  importFileObject(
+                    fileType.project, file ),
+                settings: <themeX.IBundle.settings> importFileObject(
+                    fileType.settings, file )
             }
         } else {
             return undefined;

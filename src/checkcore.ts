@@ -9,16 +9,16 @@
 // ─── IMPORTS ────────────────────────────────────────────────────────────────────
 //
 
-    import fs   = require('fs');
-    import path = require('path');
-    import gi   = require('./interfaces');
-    import jsen = require('jsen');
+    import themeX   = require('./themeX');
+    import fs       = require('fs');
+    import path     = require('path');
+    import jsen     = require('jsen');
 
 //
 // ─── CHECKER ────────────────────────────────────────────────────────────────────
 //
 
-    export = ( bundle: gi.bundle.base ): boolean => {
+    export = ( bundle: themeX.IBundle.base ): boolean => {
         if ( !checkProject( bundle.project ) ) {
             return false;
         }
@@ -30,8 +30,8 @@
 //
 
     /** Checks to see if a given  */
-    function checkProject ( project: gi.bundle.project ) {
-        let scheme = loadScheme( 'themeX.project.schema.json' );
+    function checkProject ( project: themeX.IBundle.project ) {
+        let scheme = loadScheme( '../schemes/themeX.project.schema.json' );
         let validate = jsen( scheme );
         if ( validate( project ) ) {
             return true;

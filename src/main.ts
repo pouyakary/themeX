@@ -10,10 +10,9 @@
 // ─── INCLUDES ───────────────────────────────────────────────────────────────────
 //
 
-    import gi       = require('./interfaces');
+    import themeX   = require('./themeX');
     import loader   = require('./loader');
     import builder  = require('./buildcore');
-    import report   = require('./report');
 
 //
 // ─── MAIN ───────────────────────────────────────────────────────────────────────
@@ -59,8 +58,8 @@
 // ─── BUILD ──────────────────────────────────────────────────────────────────────
 //
 
-    function build ( bundle: gi.bundle.base ) {
-        report( 1 , "hello world" );
+    function build ( bundle: themeX.IBundle.base ) {
+        themeX.report( 1 , "hello world" );
     }
 
 //
