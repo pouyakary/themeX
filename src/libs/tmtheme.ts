@@ -65,10 +65,12 @@
 
         // comment...
         let commentRule: themeX.IBundle.rule = {
-            color: themeX.parseColor( 
-                theme, theme.theme.project.themes[ theme.index ].settings.comment ),
-            scope: 'comment',
-            name: 'Comment'
+            color:  themeX.parseColor(
+                        theme,
+                        theme.theme.project.themes[ theme.index ].settings.comment
+            ),
+            scope:  'comment',
+            name:   'Comment'
         }
         settings.push( generateRuleXML( commentRule ) );
 
