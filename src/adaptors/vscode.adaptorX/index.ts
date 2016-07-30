@@ -27,12 +27,12 @@
 //
 
     export function generate ( project: themeX.IBundle.base, address: string ) {
-
-        for ( var index = 0; index < project.project.themes.length; index++ ) {
-            let currentTheme: themeX.ICurrentTheme = {
-                theme: project, index: 0
-            }
+        let currentTheme: themeX.ICurrentTheme = {
+            theme: project,
+            index: 0,
+            path: address
         }
+        console.log( tmTheme( currentTheme ) );
     }
 
 //

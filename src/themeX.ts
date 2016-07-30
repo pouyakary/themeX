@@ -67,6 +67,7 @@
     export interface ICurrentTheme {
         theme: IBundle.base;
         index: number;
+        path: string;
     }
 
 //
