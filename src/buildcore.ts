@@ -49,7 +49,7 @@
                         path.join( adaptorDirectory , subDirectory )
                     );
                     try {
-                        themeX.print(`running adaptor version ${ adaptor.version } for "${ adaptor.editor }".`);
+                        themeX.print(`running adaptor "${ subDirectory }" (v${ adaptor.version }).`);
                         adaptor.generate( project, address );
                     } catch ( error ) {
                         themeX.report( 2 , `-> themeX error: Could not generate theme for ${ adaptor.editor }.\n   editor: ${ adaptor.id }` );
