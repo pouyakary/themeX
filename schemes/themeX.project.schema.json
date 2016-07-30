@@ -45,7 +45,10 @@
                     "items": { "type": "string" },
                     "optional": true
                 },
-                "color": { "type": "string" }
+                "color": { "type": "string" },
+                "italic": { "type": "boolean", "optional": true },
+                "underline": { "type": "boolean", "optional": true },
+                "bold": { "type": "boolean", "optional": true }
             }
         }
     }
