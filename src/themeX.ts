@@ -143,6 +143,9 @@
                 scope?: string;
                 scopes?: string[ ];
                 color: string;
+                bold?: boolean;
+                italic?: boolean;
+                underline?: boolean;
             }
 
         //

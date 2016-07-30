@@ -108,8 +108,10 @@
 //
 
     function generateRuleXML ( rule: themeX.IBundle.rule ): string {
+        // init name
         let result = [ addPListKeyInline( 'name', rule.name ) ];
 
+        // adding the scope
         if ( rule.scope !== null && rule.scope !== undefined ) {
             result.push( addPListKeyInline( 'scope', rule.scope ) );
         } else if ( rule.scopes !== null && rule.scopes !== undefined ) {
@@ -119,12 +121,31 @@
             return '';
         }
 
-        result.push(
-            addPListKeyBlock('settings', 
-                addPListKeyInline('foreground', 
-                    themeX.parseColor( theme, rule.color )
-        )));
+        // adding the color
+        let settings: string[ ] = [
+            addPListKeyInline('foreground', themeX.parseColor( theme, rule.color ) )
+        ];
 
+        // adding style info
+        let styleSettings = '';
+        [ 'bold', 'italic', 'underline' ].forEach( style => {
+            if ( rule[ style ] === true ) {
+                styleSettings = `${ styleSettings } ${ style }`;
+            }
+        });
+        if ( styleSettings !== '' ) {
+            settings.push(
+                addPListKeyInline( 'fontStyle', styleSettings )
+            )
+        }
+
+        // configuring settings
+        result.push(
+            addPListKeyBlock('settings',
+                settings.join('')
+        ));
+
+        // done
         return result.join('');
     }
 

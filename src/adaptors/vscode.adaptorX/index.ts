@@ -30,11 +30,8 @@
 
         for ( var index = 0; index < project.project.themes.length; index++ ) {
             let currentTheme: themeX.ICurrentTheme = {
-                theme: project,
-                index: 0
-
+                theme: project, index: 0
             }
-            
         }
     }
 
