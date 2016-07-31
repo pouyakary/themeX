@@ -32,6 +32,8 @@
 //
 
     export function parseColor ( theme: ICurrentTheme, color: string ): string {
+        color = color.toString( );
+
         function onBadColor ( ) {
             if ( theme.theme.project.themes[ theme.index ].baseColor === 'dark' ) {
                 return '#FFFFFF';
@@ -41,10 +43,10 @@
         }
 
         if ( /^\#?[A-F0-9]{6}$/i.test( color ) ) {
-            if ( color.startsWith('#') ) {
+            if ( color.toString( ).startsWith('#') ) {
                 return color.toUpperCase( );
             } else {
-                return `#${color.toUpperCase( ) }`;
+                return `#${ color.toUpperCase( ) }`;
             }
         } else if ( /^\.[a-z]([a-z0-9\-]*[a-z0-9])?$/i.test( color ) ) {
             let v = theme.theme.project.themes[ theme.index ].colors[ color.substr( 1 ) ];
@@ -70,7 +72,7 @@
 //
 
     export function reportFromAdaptor ( adaptor: IAdaptor, message: string ) {
-        console.log(`──▶︎ themeX error from adaptor "${ adaptor.name }"\n    ──▶︎ ${ message }"`);
+        console.log(`──▶︎ themeX error from adaptor "${ adaptor.editorName }"\n    ──▶︎ ${ message }"`);
     }
 
 //
