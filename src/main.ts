@@ -13,6 +13,7 @@
     import themeX   = require('./themeX');
     import loader   = require('./loader');
     import builder  = require('./buildcore');
+    import CLITest  = require('./cli-test');
 
 //
 // ─── MAIN ───────────────────────────────────────────────────────────────────────
@@ -27,12 +28,17 @@
         if ( args.length == 0 ) {
             if ( process.cwd( ).toLowerCase( ).endsWith( '.themex' ) ) {
                 buildCWD( );
+
             } else {
                 showHelp( );
             }
         } else if ( args.length === 1 ) {
             if ( args[ 0 ].toLowerCase( ).endsWith( '.themex' ) ) {
                 buildByFile( args[ 0 ] );
+
+            } else if ( args[ 0 ] === 'test' ) {
+                process.exit( CLITest( ) );
+
             } else {
                 showHelp( );
             }
