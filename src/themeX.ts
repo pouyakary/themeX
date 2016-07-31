@@ -6,6 +6,28 @@
 //
 
 //
+// ────────────────────────────────────────────────────── I ──────────
+//   :::::: T O O L I N G : :  :   :    :     :        :          :
+// ────────────────────────────────────────────────────────────────
+//
+
+//
+// ─── FOR EACH PROJECT DO ────────────────────────────────────────────────────────
+//
+
+    export function forEachThemeDo ( project: IBundle.base,
+                                     address: string,
+                           generatorFunction: ( theme: ICurrentTheme ) => void ) {
+        for ( let _THEME_INDEX = 0; _THEME_INDEX < project.project.themes.length; _THEME_INDEX++ ) {
+            generatorFunction({
+                theme: project,
+                index: _THEME_INDEX,
+                 path: address
+            });
+        }
+    }
+
+//
 // ─── GET VARIABLE ───────────────────────────────────────────────────────────────
 //
 
@@ -44,6 +66,14 @@
     }
 
 //
+// ─── REPORT FROM ADAPTOR ────────────────────────────────────────────────────────
+//
+
+    export function reportFromAdaptor ( adaptor: IAdaptor, message: string ) {
+        console.log(`──▶︎ themeX error from adaptor "${ adaptor.name }"\n    ──▶︎ ${ message }"`);
+    }
+
+//
 // ─── THEMEX LOG ─────────────────────────────────────────────────────────────────
 //
 
@@ -58,6 +88,31 @@
     /** Indents the string... */
     export function indent ( text: string ) {
         return text.split('\n').map( line => '    ' + line ).join('\n');
+    }
+
+// ────────────────────────────────────────────────────────────────────────────────
+
+
+
+
+
+//
+// ──────────────────────────────────────────────────────────── II ──────────
+//   :::::: I N T E R F A C E S : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────────────────
+//
+
+//
+// ─── INTERFACES ─────────────────────────────────────────────────────────────────
+//
+
+    export interface IAdaptor {
+        id: string;
+        generate ( project: IBundle.base, address: string );
+        editorName: string;
+        editorId: string;
+        version: string;
+        author: string;
     }
 
 //
