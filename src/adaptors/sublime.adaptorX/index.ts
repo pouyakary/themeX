@@ -28,7 +28,6 @@
 
     export function generate ( project: themeX.IBundle.base, address: string ) {
         themeX.forEachThemeDo( project, address, theme => {
-            console.log('- - - - - - - - - - - - - - - - - - - - - - - - -');
             themeX.print( tmTheme( theme ) );
         });
     }
