@@ -6,10 +6,39 @@
 //
 
 //
+// ─── IMPORTS ────────────────────────────────────────────────────────────────────
+//
+
+    import path = require('path');
+
+// ────────────────────────────────────────────────────────────────────────────────
+
+
+
+
+
+//
 // ────────────────────────────────────────────────────── I ──────────
 //   :::::: T O O L I N G : :  :   :    :     :        :          :
 // ────────────────────────────────────────────────────────────────
 //
+
+//
+// ─── GET BUILD DIR ──────────────────────────────────────────────────────────────
+//
+
+    export function getAdaptorBuildDirectory ( adaptor: IAdaptor, address: string ): string {
+        return path.join( getFolderContainingProject( address ),
+            path.join( 'build', adaptor.editorId ));
+    }
+
+//
+// ─── GET FOLDER CONTAINING THE PROJECT ──────────────────────────────────────────
+//
+
+    export function getFolderContainingProject ( address: string ): string {
+        return address.replace( /\/(?:[^(\/)\\]|\\.)*$/, '' );
+    }
 
 //
 // ─── FOR EACH PROJECT DO ────────────────────────────────────────────────────────
