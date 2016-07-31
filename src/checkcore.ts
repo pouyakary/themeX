@@ -33,11 +33,7 @@
     function checkProject ( project: themeX.IBundle.project ) {
         let scheme = loadScheme( '../schemes/themeX.project.schema.json' );
         let validate = jsen( scheme );
-        if ( validate( project ) ) {
-            return true;
-        } else {
-            return false;
-        }
+        return validate( project )? true : false;
     }
 
 //

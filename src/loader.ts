@@ -56,11 +56,7 @@
 
     function importFileObject ( kind: fileType, cwd: string ): Object {
         let address: string;
-        if ( kind == fileType.project ) {
-            address = path.join( cwd, 'theme.yml' );
-        } else {
-            address = path.join( cwd, 'project.yml')
-        }
+        address = ( kind == fileType.project )? path.join( cwd, 'theme.yml' ) : path.join( cwd, 'project.yml');
         return importYAML( address );
     }
 

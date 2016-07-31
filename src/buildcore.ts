@@ -31,19 +31,34 @@
         let adaptorDirectory = getAdaptorDirectoryLocation( );
         fs.readdir( adaptorDirectory, ( err , files ) => {
             files.forEach( subDirectory => {
+
                 if ( /.adaptorX$/.test( subDirectory ) ) {
                     var adaptor = <themeX.IAdaptor> require(
                         path.join( adaptorDirectory , subDirectory )
                     );
+
                     try {
                         themeX.print(`running adaptor "${ subDirectory }" (v${ adaptor.version })`);
+
+                        setupAdaptorEnvironment( adaptor, address );
+
                         adaptor.generate( project, address );
                     } catch ( error ) {
                         themeX.report( 5, `Could not generate theme for ${ adaptor.editorName }.\n      Adaptor: ${ adaptor.id }` );
+                        themeX.print(`   ${ error }`)
                     }
                 }
             })
         });
+    }
+
+//
+// ─── SETUP ADAPTOR ENVIRONMENT ──────────────────────────────────────────────────
+//
+
+    function setupAdaptorEnvironment ( adaptor: themeX.IAdaptor, address: string ) {
+        let projectDir = themeX.getAdaptorBuildDirectory( adaptor, address );
+        themeX.print( address );
     }
 
 //
