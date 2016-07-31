@@ -17,9 +17,9 @@
 //
 
     export const id         = 'org.karyfoundation.themeX.sublime';
-    export const editor     = 'Sublime Text';
+    export const editorName = 'Sublime Text';
+    export const editorId   = 'sublime'
     export const version    = '1.0.0'
-    export const name       = 'ThemeX Adaptor for Sublime Text';
     export const author     = 'Kary Foundation, Inc.';
 
 //
@@ -27,7 +27,15 @@
 //
 
     export function generate ( project: themeX.IBundle.base, address: string ) {
-
+        themeX.forEachThemeDo( project, address, theme => {
+            console.log('- - - - - - - - - - - - - - - - - - - - - - - - -');
+            themeX.print( tmTheme( theme ) );
+        });
     }
+
+//
+// ─── CREATE BASE FOLDER ─────────────────────────────────────────────────────────
+//
+
 
 // ────────────────────────────────────────────────────────────────────────────────

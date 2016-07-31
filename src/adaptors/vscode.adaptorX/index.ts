@@ -17,7 +17,8 @@
 //
 
     export const id         = 'org.karyfoundation.themeX.vscode';
-    export const editor     = 'Visual Studio Code';
+    export const editorName = 'Visual Studio Code';
+    export const editorId   = 'sublime'
     export const version    = '1.0.0'
     export const name       = 'Visual Studio Code ThemeX Generator';
     export const author     = 'Kary Foundation, Inc.';
@@ -32,7 +33,6 @@
             index: 0,
             path: address
         }
-        console.log( tmTheme( currentTheme ) );
     }
 
 //
