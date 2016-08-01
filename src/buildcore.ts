@@ -41,12 +41,12 @@
                     );
 
                     try {
-                        themeX.print(`running adaptor ${ ( ' ' + subDirectory + ' ' ).bgCyan } (v${ adaptor.version })`);
+                        themeX.print(`running adaptor ${ subDirectory } (v${ adaptor.version })`);
 
                         setupAdaptorEnvironment( adaptor, address );
                         adaptor.generate( project, address );
                     } catch ( error ) {
-                        themeX.report( `Could not generate theme for ${ adaptor.editorName }` );
+                        themeX.report( `Could not generate theme for ${ adaptor.editorName.magenta }` );
                     }
                 }
             })

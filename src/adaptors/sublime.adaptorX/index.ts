@@ -18,8 +18,8 @@
 
     export const id         = 'org.karyfoundation.themeX.sublime';
     export const editorName = 'Sublime Text';
-    export const editorId   = 'sublime'
-    export const version    = '1.0.0'
+    export const editorId   = 'sublime';
+    export const version    = '1.0.0';
     export const author     = 'Kary Foundation, Inc.';
 
 //

@@ -90,15 +90,7 @@
 //
 
     export function report ( errorMessage: string ) {
-        console.log(`${ colors.bgRed(' ') } ${ errorMessage}`);
-    }
-
-//
-// ─── REPORT FROM ADAPTOR ────────────────────────────────────────────────────────
-//
-
-    export function reportFromAdaptor ( adaptor: IAdaptor, message: string ) {
-        console.log(`──▶︎ themeX error from adaptor "${ adaptor.editorName }"\n    ──▶︎ ${ message }"`);
+        console.log(`${ colors.red('✕') } ${ errorMessage}`);
     }
 
 //
@@ -106,7 +98,7 @@
 //
 
     export function print ( input: any ) {
-        console.log(`${ ' '.bgGreen } ${ input }`);
+        console.log(`${ colors.green('✓') } ${ input }`);
     }
 
 //
