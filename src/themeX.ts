@@ -10,6 +10,7 @@
 //
 
     import path = require('path');
+    import colors = require('colors');
 
 // ────────────────────────────────────────────────────────────────────────────────
 
@@ -24,12 +25,20 @@
 //
 
 //
+// ─── BUILD PROJECT PATH ─────────────────────────────────────────────────────────
+//
+
+    export function buildsDirectoryPath ( address ) {
+        return path.join( getFolderContainingProject( address ), path.join( 'builds' ) );
+    }
+
+// 
 // ─── GET BUILD DIR ──────────────────────────────────────────────────────────────
 //
 
-    export function getAdaptorBuildDirectory ( adaptor: IAdaptor, address: string ): string {
-        return path.join( getFolderContainingProject( address ),
-            path.join( 'build', adaptor.editorId ));
+    export function adaptorBuildDirectoryPath ( adaptor: IAdaptor,
+                                                address: string ): string {
+        return path.join( buildsDirectoryPath( address ), adaptor.editorId );
     }
 
 //
@@ -47,10 +56,10 @@
     export function forEachThemeDo ( project: IBundle.base,
                                      address: string,
                            generatorFunction: ( theme: ICurrentTheme ) => void ) {
-        for ( let _THEME_INDEX = 0; _THEME_INDEX < project.project.themes.length; _THEME_INDEX++ ) {
+        for ( let __INDEX = 0; __INDEX < project.project.themes.length; __INDEX++ ) {
             generatorFunction({
                 theme: project,
-                index: _THEME_INDEX,
+                index: __INDEX,
                  path: address
             });
         }
@@ -80,8 +89,8 @@
 // ─── REPORTER ───────────────────────────────────────────────────────────────────
 //
 
-    export function report ( errorNumber: number, errorMessage: string ) {
-        console.log(`──▶︎ themeX E${ errorNumber }: ${ errorMessage }`);
+    export function report ( errorMessage: string ) {
+        console.log(`${ colors.bgRed(' ') } ${ errorMessage}`);
     }
 
 //
@@ -97,7 +106,7 @@
 //
 
     export function print ( input: any ) {
-        console.log(`──▶︎ themeX: ${ input }`);
+        console.log(`${ ' '.bgGreen } ${ input }`);
     }
 
 //

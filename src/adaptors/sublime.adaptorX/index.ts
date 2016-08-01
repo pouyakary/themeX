@@ -28,7 +28,7 @@
 
     export function generate ( project: themeX.IBundle.base, address: string ) {
         themeX.forEachThemeDo( project, address, theme => {
-            themeX.print( tmTheme( theme ) );
+            
         });
     }
 

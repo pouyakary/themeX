@@ -13,6 +13,7 @@
     import check    = require('./checkcore');
     import fs       = require('fs');
     import path     = require('path');
+    import colors   = require('colors');
 
 //
 // ─── BUILD ──────────────────────────────────────────────────────────────────────
@@ -28,6 +29,8 @@
 //
 
     function applyBuild ( project: themeX.IBundle.base, address: string ) {
+        setupBuildsDirectory( address );
+
         let adaptorDirectory = getAdaptorDirectoryLocation( );
         fs.readdir( adaptorDirectory, ( err , files ) => {
             files.forEach( subDirectory => {
@@ -38,14 +41,12 @@
                     );
 
                     try {
-                        themeX.print(`running adaptor "${ subDirectory }" (v${ adaptor.version })`);
+                        themeX.print(`running adaptor ${ ( ' ' + subDirectory + ' ' ).bgCyan } (v${ adaptor.version })`);
 
                         setupAdaptorEnvironment( adaptor, address );
-
                         adaptor.generate( project, address );
                     } catch ( error ) {
-                        themeX.report( 5, `Could not generate theme for ${ adaptor.editorName }.\n      Adaptor: ${ adaptor.id }` );
-                        themeX.print(`   ${ error }`)
+                        themeX.report( `Could not generate theme for ${ adaptor.editorName }` );
                     }
                 }
             })
@@ -53,12 +54,23 @@
     }
 
 //
+// ─── SETUP BUILD FOLDERS ────────────────────────────────────────────────────────
+//
+
+    function setupBuildsDirectory ( address: string ) {
+        let dir = themeX.buildsDirectoryPath( address );
+        if ( !fs.existsSync( dir ) ) {
+            fs.mkdirSync( dir );
+        }
+    }
+
+//
 // ─── SETUP ADAPTOR ENVIRONMENT ──────────────────────────────────────────────────
 //
 
     function setupAdaptorEnvironment ( adaptor: themeX.IAdaptor, address: string ) {
-        let projectDir = themeX.getAdaptorBuildDirectory( adaptor, address );
-        themeX.print( address );
+        let projectDir = themeX.adaptorBuildDirectoryPath( adaptor, address );
+        fs.mkdirSync( projectDir );
     }
 
 //

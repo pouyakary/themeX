@@ -70,7 +70,7 @@
 //
 
     function build ( bundle: themeX.IBundle.base ) {
-        themeX.report( 1 , "hello world" );
+        themeX.report( "hello world" );
     }
 
 //

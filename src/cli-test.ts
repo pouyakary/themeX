@@ -34,7 +34,7 @@
             }
 
         } else {
-            themeX.report( 10, 'no themeX files found.')
+            themeX.report( 'no themeX files found.')
         }
     }
 

@@ -35,6 +35,7 @@
   },
   "homepage": "https://github.com/karyfoundation/themeX#readme",
   "dependencies": {
+    "colors": "^1.1.2",
     "fs-extra": "^0.30.0",
     "js-yaml": "^3.6.1",
     "jsen": "^0.6.1"
