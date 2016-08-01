@@ -25,7 +25,7 @@
     /** Where the software starts. main basically acts as an arg switcher. */
     function main ( ) {
         let args = process.argv.slice( 2 );
-        if ( args.length == 0 ) {
+        if ( args.length === 0 ) {
             if ( process.cwd( ).toLowerCase( ).endsWith( '.themex' ) ) {
                 buildCWD( );
 
