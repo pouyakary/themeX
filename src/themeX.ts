@@ -30,7 +30,7 @@
 
     export function getFileNameForTheme ( theme: ICurrentTheme ) {
         let name = theme.theme.project.themes[ theme.index ].name;
-        return name.toLocaleLowerCase( ).replace( / /gi, '' );
+        return name.toLocaleLowerCase( ).replace( / /g, '' );
     }
 
 //

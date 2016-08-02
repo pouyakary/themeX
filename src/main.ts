@@ -80,11 +80,15 @@
 
     function printTitle ( ) {
         printHorizontalLine( );
+
         let spacings = '';
-        for ( let index = 0; index < ( size.width / 2 ) - 4; index++ ) {
-            spacings += ':';
+        for ( let index = 0; index < Math.floor( size.width / 2 ) - 4; index++ ) {
+            spacings += '•';
         }
+        spacings = spacings.rainbow;
+
         console.log( `${ spacings } themeX ${ spacings }` );
+
         printHorizontalLine( );
         console.log('');
     }
@@ -98,7 +102,7 @@
         for ( let index = 0; index < size.width; index++ ) {
             line += '\u2500';
         }
-        console.log( line );
+        console.log( line.cyan );
     }
 
 //
