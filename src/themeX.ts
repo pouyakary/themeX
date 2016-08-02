@@ -25,10 +25,19 @@
 //
 
 //
+// ─── ENCODE THEME NAME TO FILE NAME ─────────────────────────────────────────────
+//
+
+    export function getFileNameForTheme ( theme: ICurrentTheme ) {
+        let name = theme.theme.project.themes[ theme.index ].name;
+        return name.toLocaleLowerCase( ).replace( / /gi, '' );
+    }
+
+//
 // ─── BUILD PROJECT PATH ─────────────────────────────────────────────────────────
 //
 
-    export function buildsDirectoryPath ( address ) {
+    export function buildsDirectoryPath ( address: string ): string {
         return path.join( getFolderContainingProject( address ), path.join( 'builds' ) );
     }
 
@@ -89,16 +98,16 @@
 // ─── REPORTER ───────────────────────────────────────────────────────────────────
 //
 
-    export function report ( errorMessage: string ) {
-        console.log(`${ colors.red('✕') } ${ errorMessage}`);
+    export function report ( errorMessage: string ): void {
+        console.log(` ${ colors.red('✕') } ${ errorMessage}\n`);
     }
 
 //
 // ─── THEMEX LOG ─────────────────────────────────────────────────────────────────
 //
 
-    export function print ( input: any ) {
-        console.log(`${ colors.green('✓') } ${ input }`);
+    export function print ( input: any ): void {
+        console.log(` ${ colors.green('✓') } ${ input }\n`);
     }
 
 //
@@ -106,7 +115,7 @@
 //
 
     /** Indents the string... */
-    export function indent ( text: string ) {
+    export function indent ( text: string ): string {
         return text.split('\n').map( line => '    ' + line ).join('\n');
     }
 

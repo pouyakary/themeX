@@ -96,7 +96,7 @@
     function printHorizontalLine ( ) {
         let line = '';
         for ( let index = 0; index < size.width; index++ ) {
-            line += '─';
+            line += '\u2500';
         }
         console.log( line );
     }
