@@ -33,15 +33,15 @@
 
         let adaptorDirectory = getAdaptorDirectoryLocation( );
         fs.readdir( adaptorDirectory, ( err , files ) => {
-            files.forEach( subDirectory => {
+            files.forEach( adaptorDirectoryName => {
 
-                if ( /.adaptorX$/.test( subDirectory ) ) {
+                if ( /.adaptorX$/.test( adaptorDirectoryName ) ) {
                     var adaptor = <themeX.IAdaptor> require(
-                        path.join( adaptorDirectory , subDirectory )
+                        path.join( adaptorDirectory , adaptorDirectoryName )
                     );
 
                     try {
-                        themeX.print(`running adaptor ${ subDirectory } (v${ adaptor.version })`);
+                        themeX.print(`running adaptor ${ adaptorDirectoryName.underline } (v${ adaptor.version })`);
 
                         setupAdaptorEnvironment( adaptor, address );
                         adaptor.generate( project, address );
@@ -70,7 +70,9 @@
 
     function setupAdaptorEnvironment ( adaptor: themeX.IAdaptor, address: string ) {
         let projectDir = themeX.adaptorBuildDirectoryPath( adaptor, address );
-        fs.mkdirSync( projectDir );
+        if ( !fs.existsSync( projectDir ) ) {
+            fs.mkdirSync( projectDir );
+        }
     }
 
 //

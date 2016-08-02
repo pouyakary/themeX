@@ -37,7 +37,7 @@
     /** Loads the project main yaml file */
     export function loadProjectByFile ( file: string ): themeX.IBundle.base {
         if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
-            themeX.print('parsing the theme files.');
+            themeX.print('parsing theme files');
             return {
                 project: <themeX.IBundle.project>  importFileObject(
                     fileType.project, file ),
