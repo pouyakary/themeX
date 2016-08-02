@@ -14,6 +14,7 @@
     import loader   = require('./loader');
     import builder  = require('./buildcore');
     import CLITest  = require('./cli-test');
+    import size     = require('window-size');
 
 //
 // ─── MAIN ───────────────────────────────────────────────────────────────────────
@@ -60,7 +61,7 @@
 //
 
     function buildByFile ( file: string ): boolean {
-        themeX.print('initializing themeX');
+        printTitle( );
         let bundle = loader.loadProjectByFile( file );
         return builder( bundle, file );
     }
@@ -71,6 +72,33 @@
 
     function build ( bundle: themeX.IBundle.base ) {
         themeX.report( "hello world" );
+    }
+
+//
+// ─── PRINT TITLE ────────────────────────────────────────────────────────────────
+//
+
+    function printTitle ( ) {
+        printHorizontalLine( );
+        let spacings = '';
+        for ( let index = 0; index < ( size.width / 2 ) - 4; index++ ) {
+            spacings += ':';
+        }
+        console.log( `${ spacings } themeX ${ spacings }` );
+        printHorizontalLine( );
+        console.log('');
+    }
+
+//
+// ─── PRINTING HORIZONTAL LINE ───────────────────────────────────────────────────
+//
+
+    function printHorizontalLine ( ) {
+        let line = '';
+        for ( let index = 0; index < size.width; index++ ) {
+            line += '─';
+        }
+        console.log( line );
     }
 
 //

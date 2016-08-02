@@ -33,7 +33,12 @@
     }
 
 //
-// ─── CREATE BASE FOLDER ─────────────────────────────────────────────────────────
+// ─── CREATING FILES FOR SUBLIME ─────────────────────────────────────────────────
 //
+
+    function createSublimeThemeFiles ( theme: themeX.ICurrentTheme ) {
+        let themeCode = tmTheme( theme );
+        
+    }
 
 // ────────────────────────────────────────────────────────────────────────────────
