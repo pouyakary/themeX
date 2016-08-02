@@ -11,6 +11,8 @@
 
     import themeX   = require('../../themeX');
     import tmTheme  = require('../../libs/tmTheme');
+    import fs       = require('fs-extra');
+    import path     = require('path');
 
 //
 // ─── PACKAGE INFORMATION ────────────────────────────────────────────────────────
@@ -27,8 +29,9 @@
 //
 
     export function generate ( project: themeX.IBundle.base, address: string ) {
+        let sublimeBuildDir = themeX.adaptorBuildDirectoryPath( this, address );
         themeX.forEachThemeDo( project, address, theme => {
-            
+            createSublimeThemeFiles( theme, sublimeBuildDir );
         });
     }
 
@@ -36,9 +39,14 @@
 // ─── CREATING FILES FOR SUBLIME ─────────────────────────────────────────────────
 //
 
-    function createSublimeThemeFiles ( theme: themeX.ICurrentTheme ) {
+    function createSublimeThemeFiles ( theme: themeX.ICurrentTheme, dir: string ) {
         let themeCode = tmTheme( theme );
-        
+        let fileName = `${ themeX.getFileNameForTheme( theme ) }.tmTheme`;
+        fs.writeFile( path.join( dir , fileName ), themeCode, error => {
+            if ( error ) {
+                themeX.report(`could not build: ${ fileName }`);
+            }
+        });
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
