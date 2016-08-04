@@ -9,8 +9,9 @@
 // ─── IMPORTS ────────────────────────────────────────────────────────────────────
 //
 
-    import path = require('path');
-    import colors = require('colors');
+    import fs       = require('fs-extra');
+    import colors   = require('colors');
+    import path     = require('path');
 
 // ────────────────────────────────────────────────────────────────────────────────
 
@@ -23,6 +24,16 @@
 //   :::::: T O O L I N G : :  :   :    :     :        :          :
 // ────────────────────────────────────────────────────────────────
 //
+
+//
+// ─── FOR EACH KEY DO ────────────────────────────────────────────────────────────
+//
+
+    export function forkey ( object: Object, func: ( key: string ) => void ) {
+        Object.keys( object ).forEach( key => {
+            func( key );
+        });
+    }
 
 //
 // ─── ENCODE THEME NAME TO FILE NAME ─────────────────────────────────────────────
@@ -253,6 +264,36 @@
 
         // ─────────────────────────────────────────────────────────────────
 
+    }
+
+// ────────────────────────────────────────────────────────────────────────────────
+
+
+
+
+//
+// ──────────────────────────────────────────────── III ──────────
+//   :::::: F I L E : :  :   :    :     :        :          :
+// ──────────────────────────────────────────────────────────
+//
+
+//
+// ─── COPY TOOL ──────────────────────────────────────────────────────────────────
+//
+
+    /**
+     * Let's you copy a **_template file_** from templates directory to the build
+     * **_destination folder_** by also replacing your _replacements_ (optional)
+     */
+    export function copy ( adaptor: IAdaptor,
+                          template: string,
+                       destination: string,
+                     replacements?: Object ): boolean {
+
+        // loading the file
+        let fileContent = fs.readFileSync( template, 'utf8' );
+        if ( fileContent === null || fileContent === undefined ) return false;
+            
     }
 
 // ────────────────────────────────────────────────────────────────────────────────

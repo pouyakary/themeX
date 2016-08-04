@@ -1,0 +1,27 @@
+{
+    "name": "theme-<%= basename =>",
+    "displayName": "<%= name =>",
+    "description": "<%= description =>",
+    "version": "<%= version =>",
+    "publisher": "<%= vscode.publisher =>",
+    "icon": "icon.png",
+    "repository": {
+        "type": "git",
+        "url": "<%= repository =>"
+	},
+	"bugs": {
+		"url": "<%= repository =>/issues"
+	},
+	"homepage": "<%= repository =>",
+    "engines": {
+        "vscode": "^0.10.1"
+    },
+    "categories": [
+        "Themes"
+    ],
+    "contributes": {
+        "themes": [
+            <%= themes =>
+        ]
+    }
+}
