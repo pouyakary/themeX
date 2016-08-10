@@ -109,7 +109,6 @@ interface String {
     bgWhite: string;
 
     reset: string;
-    bold: string;
     dim: string;
     italic: string;
     underline: string;

@@ -147,6 +147,7 @@
 //
 
     export interface IAdaptor {
+        name: string;
         id: string;
         generate ( project: IBundle.base, address: string );
         editorName: string;

@@ -39,7 +39,7 @@
         if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
             themeX.print('parsing theme files');
             return {
-                project: <themeX.IBundle.project>  importFileObject(
+                project: <themeX.IBundle.project> importFileObject(
                     fileType.project, file ),
                 settings: <themeX.IBundle.settings> importFileObject(
                     fileType.settings, file ),
@@ -56,7 +56,9 @@
 
     function importFileObject ( kind: fileType, cwd: string ): Object {
         let address: string;
-        address = ( kind == fileType.project )? path.join( cwd, 'theme.yml' ) : path.join( cwd, 'project.yml');
+        address = ( kind == fileType.project )?
+            path.join( cwd, 'theme.yml' ):
+            path.join( cwd, 'project.yml');
         return importYAML( address );
     }
 

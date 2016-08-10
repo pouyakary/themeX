@@ -119,7 +119,7 @@
         } else if ( rule.scopes !== null && rule.scopes !== undefined ) {
             result.push( addPListKeyInline('scope', rule.scopes.join(', ') ) );
         } else {
-            themeX.report( 3, `bad scope definition: "${ rule.name }".`)
+            themeX.report( `bad scope definition: "${ rule.name }".`)
             return '';
         }
 
