@@ -29,28 +29,50 @@
 //
 
     function applyBuild ( project: themeX.IBundle.base, address: string ) {
+        // setting up the build directory
         setupBuildsDirectory( address );
 
+        // running adaptors
         let adaptorDirectory = getAdaptorDirectoryLocation( );
         fs.readdir( adaptorDirectory, ( err , files ) => {
             files.forEach( adaptorDirectoryName => {
-
                 if ( /.adaptorX$/.test( adaptorDirectoryName ) ) {
-                    var adaptor = <themeX.IAdaptor> require(
-                        path.join( adaptorDirectory , adaptorDirectoryName )
+                    runAdaptor(
+                        adaptorDirectory,
+                        adaptorDirectoryName,
+                        address,
+                        project
                     );
-
-                    try {
-                        themeX.print(`running adaptor ${ adaptorDirectoryName.underline } (v${ adaptor.version })`);
-
-                        setupAdaptorEnvironment( adaptor, address );
-                        adaptor.generate( project, address );
-                    } catch ( error ) {
-                        themeX.report( `Could not generate theme for ${ adaptor.editorName.magenta }` );
-                    }
                 }
             })
         });
+    }
+
+//
+// ─── RUN ADAPTOR ────────────────────────────────────────────────────────────────
+//
+
+    function runAdaptor ( adaptorDirectory: string,
+                      adaptorDirectoryName: string,
+                                   address: string,
+                                   project: themeX.IBundle.base ) {
+        try {
+            // Loading the core.
+            var adaptor = <themeX.IAdaptor> require(
+                path.join( adaptorDirectory , adaptorDirectoryName )
+            );
+            adaptor['name'] = adaptorDirectoryName;
+
+            // Setting up the environment.
+            setupAdaptorEnvironment( adaptor, address );
+
+            // Running the adaptor.
+            themeX.print( `running adaptor ${ adaptor.name.underline } (v${ adaptor.version })` );
+            adaptor.generate( project, address );
+
+        } catch ( error ) {
+            themeX.report( `Could not generate theme for ${ adaptor.editorName.magenta }` );
+        }
     }
 
 //
