@@ -148,6 +148,7 @@
 
     export interface IAdaptor {
         name: string;
+        adaptorPath: string;
         id: string;
         generate ( project: IBundle.base, address: string );
         editorName: string;
@@ -279,6 +280,18 @@
 //
 
 //
+// ─── REPLACE OBJECTS IN STRING ──────────────────────────────────────────────────
+//
+
+    /** Replaces some objects keys with their values in a text */
+    export function replaceObjectsInString ( text: string, replacements: Object ) {
+        text.replace( /\{\#[a-b\_0-9 ]+\#\}/gi, ( handle: string ) => {
+            console.log( handle );
+            return null;
+        });
+    }
+
+//
 // ─── COPY TOOL ──────────────────────────────────────────────────────────────────
 //
 
@@ -294,7 +307,7 @@
         // loading the file
         let fileContent = fs.readFileSync( template, 'utf8' );
         if ( fileContent === null || fileContent === undefined ) return false;
-            
+
     }
 
 // ────────────────────────────────────────────────────────────────────────────────

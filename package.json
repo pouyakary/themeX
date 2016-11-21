@@ -1,6 +1,6 @@
 {
   "name": "themex",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "The altimate UNIVERSAL syntax color theme generator that let's you build your color scheme in just one file and compile for a wide range of different editors",
   "bin": {
     "themex": "build/main.js"

@@ -1,4 +1,5 @@
 
+
 //
 // Theme - A general color scheme theme generator
 //  Copyright 2016 Kary Foundation, Inc. All Rights Reserved.
@@ -9,10 +10,10 @@
 // ─── LOADINGS ───────────────────────────────────────────────────────────────────
 //
 
-    import themeX   = require('./themeX');
-    import jsYaml   = require('js-yaml');
-    import fs       = require('fs');
-    import path     = require('path');
+    import themeX = require( './themeX' );
+    import jsYaml = require( 'js-yaml' );
+    import fs = require( 'fs' );
+    import path = require( 'path' );
 
 //
 // ─── ENUMS ──────────────────────────────────────────────────────────────────────
@@ -37,11 +38,11 @@
     /** Loads the project main yaml file */
     export function loadProjectByFile ( file: string ): themeX.IBundle.base {
         if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
-            themeX.print('parsing theme files');
+            themeX.print( 'parsing theme files' );
             return {
-                project: <themeX.IBundle.project> importFileObject(
+                project: <themeX.IBundle.project>importFileObject(
                     fileType.project, file ),
-                settings: <themeX.IBundle.settings> importFileObject(
+                settings: <themeX.IBundle.settings>importFileObject(
                     fileType.settings, file ),
                 path: file
             }
@@ -56,9 +57,9 @@
 
     function importFileObject ( kind: fileType, cwd: string ): Object {
         let address: string;
-        address = ( kind == fileType.project )?
-            path.join( cwd, 'theme.yml' ):
-            path.join( cwd, 'project.yml');
+        address = ( kind == fileType.project ) ?
+            path.join( cwd, 'theme.yml' ) :
+            path.join( cwd, 'project.yml' );
         return importYAML( address );
     }
 
@@ -77,3 +78,5 @@
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
+
+    

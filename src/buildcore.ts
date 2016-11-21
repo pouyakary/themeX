@@ -1,4 +1,5 @@
 
+
 //
 // Theme - A general color scheme theme generator
 //  Copyright 2016 Kary Foundation, Inc. All Rights Reserved.
@@ -9,17 +10,18 @@
 // ─── IMPORTS ────────────────────────────────────────────────────────────────────
 //
 
-    import themeX   = require('./themeX');
-    import check    = require('./checkcore');
-    import fs       = require('fs');
-    import path     = require('path');
-    import colors   = require('colors');
+
+    import themeX = require( './themeX' );
+    import check = require( './checkcore' );
+    import fs = require( 'fs' );
+    import path = require( 'path' );
+    import colors = require( 'colors' );
 
 //
 // ─── BUILD ──────────────────────────────────────────────────────────────────────
 //
 
-    export = ( project: themeX.IBundle.base , address: string ): boolean => {
+    export = ( project: themeX.IBundle.base, address: string ): boolean => {
         if ( !check( project ) ) return false;
         applyBuild( project, address );
     }
@@ -34,7 +36,7 @@
 
         // running adaptors
         let adaptorDirectory = getAdaptorDirectoryLocation( );
-        fs.readdir( adaptorDirectory, ( err , files ) => {
+        fs.readdir( adaptorDirectory, ( err, files ) => {
             files.forEach( adaptorDirectoryName => {
                 if ( /.adaptorX$/.test( adaptorDirectoryName ) ) {
                     runAdaptor(
@@ -53,25 +55,28 @@
 //
 
     function runAdaptor ( adaptorDirectory: string,
-                      adaptorDirectoryName: string,
-                                   address: string,
-                                   project: themeX.IBundle.base ) {
+        adaptorDirectoryName: string,
+        address: string,
+        project: themeX.IBundle.base ) {
         try {
             // Loading the core.
-            var adaptor = <themeX.IAdaptor> require(
-                path.join( adaptorDirectory , adaptorDirectoryName )
-            );
-            adaptor['name'] = adaptorDirectoryName;
-
+            let adaptorPath = path.join( adaptorDirectory, adaptorDirectoryName );
+            let adaptor = <themeX.IAdaptor>require( adaptorPath );
+            adaptor[ 'name' ] = adaptorDirectoryName;
+            adaptor[ 'adaptorPath' ] = adaptorPath;
+    
+    
             // Setting up the environment.
             setupAdaptorEnvironment( adaptor, address );
-
+    
+    
             // Running the adaptor.
-            themeX.print( `running adaptor ${ adaptor.name.underline } (v${ adaptor.version })` );
+            themeX.print( `running adaptor ${adaptor.name.underline} (v${adaptor.version})` );
             adaptor.generate( project, address );
-
+    
+    
         } catch ( error ) {
-            themeX.report( `Could not generate theme for ${ adaptor.editorName.magenta }` );
+            themeX.report( `Could not generate theme` );
         }
     }
 
@@ -102,7 +107,9 @@
 //
 
     function getAdaptorDirectoryLocation ( ): string {
-        return path.join( __dirname , 'adaptors' );
+        return path.join( __dirname, 'adaptors' );
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
+
+    

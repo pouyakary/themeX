@@ -1,18 +1,18 @@
 {
-    "name": "theme-<%= basename =>",
-    "displayName": "<%= name =>",
-    "description": "<%= description =>",
-    "version": "<%= version =>",
-    "publisher": "<%= vscode.publisher =>",
+    "name": "theme-{# basename #}",
+    "displayName": "{# name #}",
+    "description": "{# description #}",
+    "version": "{# version #}",
+    "publisher": "{# vscode.publisher #}",
     "icon": "icon.png",
     "repository": {
         "type": "git",
-        "url": "<%= repository =>"
+        "url": "{# repository #}"
 	},
 	"bugs": {
-		"url": "<%= repository =>/issues"
+		"url": "{# repository #}/issues"
 	},
-	"homepage": "<%= repository =>",
+	"homepage": "{# repository #}",
     "engines": {
         "vscode": "^0.10.1"
     },
@@ -21,7 +21,7 @@
     ],
     "contributes": {
         "themes": [
-            <%= themes =>
+            {# themes #}
         ]
     }
 }
