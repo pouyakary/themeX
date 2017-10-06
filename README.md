@@ -12,7 +12,7 @@
 When you're writing a color scheme you end up having some concerns:
 - There are many editors to support. Fortunately Visual Studio Code, Sublime Text and TextMate have a shared format `tmTheme` that is also supported by Atom through a convertor. However it still remains support for major tools like Visual Studio, Xcode, Xamarin Studio, IDEs by Jetbrains, LightTable, Qt Creator and many many many other...
 
-- You have to develop bot for Light and Dark. The problem is you always have a color theme and you specify what color for what scope. Now the only different between light and dark is the tone of those colors. Why cant you just create a color tone for dark and light and then let the software generate themes based on shared scope definitions?
+- You have to develop both for Light and Dark. The problem is you always have a color theme and you specify what color for what scope. Now the only different between light and dark is the tone of those colors. Why cant you just create a color tone for dark and light and then let the software generate themes based on shared scope definitions?
 
 - Colors defined by you are not displayed in the result correctly. After having an [interesting issue](https://github.com/Microsoft/vscode/issues/9629) with Visual Studio Code and Sublime Text, we found out that the editors tend to change your colors. We had to have a way to bypass their color filters by changing the colors of your scheme in the result files so after they apply their color changes, your colors remain the same.
 
