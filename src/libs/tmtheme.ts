@@ -9,13 +9,13 @@
 // ─── IMPORTS ────────────────────────────────────────────────────────────────────
 //
 
-    import themeX = require('../themeX');
+    import themeX = require('../themeX')
 
 //
 // ─── GLOBALS ────────────────────────────────────────────────────────────────────
 //
 
-    var theme: themeX.ICurrentTheme;
+    var theme: themeX.ICurrentTheme
 
 //
 // ─── DEFS ───────────────────────────────────────────────────────────────────────
@@ -28,8 +28,8 @@
 //
 
     export = ( currentTheme: themeX.ICurrentTheme ): string => {
-        theme = currentTheme;
-        return generateTheme( );
+        theme = currentTheme
+        return generateTheme( )
     }
 
 //
@@ -38,20 +38,20 @@
 
     function generateTheme ( ): string {
         // adding header
-        let themeXML: string[ ] = [ ];
+        let themeXML: string[ ] = [ ]
 
         // adding the name
         themeXML.push(
-            addPListKeyInline( 'name', theme.theme.project.themes[ theme.index ].name ) );
+            addPListKeyInline( 'name', theme.theme.project.themes[ theme.index ].name ) )
 
         // adding the main buddy
-        themeXML.push( generateTmThemeSettingsArray( ) );
+        themeXML.push( generateTmThemeSettingsArray( ) )
 
         // adding the main settings
-        themeXML.push( generateTmThemeSettings( ) );
+        themeXML.push( generateTmThemeSettings( ) )
 
         // finalizing...
-        return `${ pListHead }${ themeX.indent( themeXML.join('') ) }\n</dict>\n</plist>`;
+        return `${ pListHead }${ themeX.indent( themeXML.join('') ) }\n</dict>\n</plist>`
     }
 
 //
@@ -59,9 +59,9 @@
 //
 
     function generateTmThemeSettingsArray ( ): string {
-        let settings: string[ ] = [ ];
+        let settings: string[ ] = [ ]
         // main settings
-        settings.push( generateMainColorSchemeSettings( ) );
+        settings.push( generateMainColorSchemeSettings( ) )
 
         // comment...
         let commentRule: themeX.IBundle.rule = {
@@ -72,15 +72,15 @@
             scope:  'comment',
             name:   'Comment'
         }
-        settings.push( generateRuleXML( commentRule ) );
+        settings.push( generateRuleXML( commentRule ) )
 
         // rest of the rules
         theme.theme.project.rules.forEach( rule => {
-            settings.push( generateRuleXML( rule ) );
-        });
+            settings.push( generateRuleXML( rule ) )
+        })
 
         // done
-        return addPListSettingsArray( settings );
+        return addPListSettingsArray( settings )
     }
 
 //
@@ -88,21 +88,23 @@
 //
 
     function generateMainColorSchemeSettings ( ) {
-        let settings = theme.theme.project.themes[ theme.index ].settings;
-        let result: string[ ] = [  ];
+        const settings =
+            theme.theme.project.themes[ theme.index ].settings
+        const result =
+            new Array<string>( )
 
         function addSettingColor ( name: string, color: string ) {
-            result.push( addPListKeyInline( name, themeX.parseColor( theme, color ) ) );
+            result.push( addPListKeyInline( name, themeX.parseColor( theme, color ) ) )
         }
-        
-        addSettingColor( 'background'   , settings.background     );
-        addSettingColor( 'foreground'   , settings.foreground     );
-        addSettingColor( 'caret'        , settings.caret          );
-        addSettingColor( 'invisibles'   , settings.invisibles     );
-        addSettingColor( 'lineHighlight', settings.lineHighlight  );
-        addSettingColor( 'selection'    , settings.selection      );
 
-        return `\n<!-- Main Color Settings -->${ addPListKeyBlock( 'settings', result.join('') ) }`;
+        addSettingColor( 'background'   , settings.background     )
+        addSettingColor( 'foreground'   , settings.foreground     )
+        addSettingColor( 'caret'        , settings.caret          )
+        addSettingColor( 'invisibles'   , settings.invisibles     )
+        addSettingColor( 'lineHighlight', settings.lineHighlight  )
+        addSettingColor( 'selection'    , settings.selection      )
+
+        return `\n<!-- Main Color Settings -->${ addPListKeyBlock( 'settings', result.join('') ) }`
     }
 
 //
@@ -111,30 +113,30 @@
 
     function generateRuleXML ( rule: themeX.IBundle.rule ): string {
         // init name
-        let result = [ addPListKeyInline( 'name', rule.name ) ];
+        let result = [ addPListKeyInline( 'name', rule.name ) ]
 
         // adding the scope
-        if ( rule.scope !== null && rule.scope !== undefined ) {
-            result.push( addPListKeyInline( 'scope', rule.scope ) );
-        } else if ( rule.scopes !== null && rule.scopes !== undefined ) {
-            result.push( addPListKeyInline('scope', rule.scopes.join(', ') ) );
-        } else {
+        if ( rule.scope !== null && rule.scope !== undefined )
+            result.push( addPListKeyInline( 'scope', rule.scope ) )
+        else if ( rule.scopes !== null && rule.scopes !== undefined )
+            result.push( addPListKeyInline('scope', rule.scopes.join(', ') ) )
+        else {
             themeX.report( `bad scope definition: "${ rule.name }".`)
             return '';
         }
 
         // adding the color
-        let settings: string[ ] = [
+        const settings: string[ ] = [
             addPListKeyInline('foreground', themeX.parseColor( theme, rule.color ) )
-        ];
+        ]
 
         // adding style info
         let styleSettings = '';
         [ 'bold', 'italic', 'underline' ].forEach( style => {
             if ( rule[ style ] === true ) {
-                styleSettings = `${ styleSettings } ${ style }`;
+                styleSettings = `${ styleSettings } ${ style }`
             }
-        });
+        })
         if ( styleSettings !== '' ) {
             settings.push(
                 addPListKeyInline( 'fontStyle', styleSettings )
@@ -145,10 +147,10 @@
         result.push(
             addPListKeyBlock('settings',
                 settings.join('')
-        ));
+        ))
 
         // done
-        return result.join('');
+        return result.join('')
     }
 
 //
@@ -156,19 +158,19 @@
 //
 
     function generateTmThemeSettings ( ): string {
-        let settingsXML = '\n<!-- Theme Settings -->';
+        let settingsXML = '\n<!-- Theme Settings -->'
 
         settingsXML += addPListKeyInline( 'uuid',
-            theme.theme.project.themes[ theme.index ].uuid );
+            theme.theme.project.themes[ theme.index ].uuid )
 
         settingsXML += addPListKeyInline( 'semanticClass',
-            `theme.${ theme.theme.project.themes[ theme.index ].baseColor }.${ theme.theme.project.themes[ theme.index ].uuid }`);
+            `theme.${ theme.theme.project.themes[ theme.index ].baseColor }.${ theme.theme.project.themes[ theme.index ].uuid }`)
 
-        settingsXML += addPListKeyInline( 'author', theme.theme.project.author );
+        settingsXML += addPListKeyInline( 'author', theme.theme.project.author )
 
-        settingsXML += addPListKeyInline( 'colorSpaceName', 'sRGB' );
+        settingsXML += addPListKeyInline( 'colorSpaceName', 'sRGB' )
 
-        return settingsXML;
+        return settingsXML
     }
 
 //
@@ -176,7 +178,7 @@
 //
 
     function addPListKeyInline ( key: string, text: string ): string {
-        return `\n<key>${ key }</key>\n<string>${ text }</string>`;
+        return `\n<key>${ key }</key>\n<string>${ text }</string>`
     }
 
 //
@@ -184,7 +186,7 @@
 //
 
     function addPListKeyBlock ( key: string, text: string ): string {
-        return `\n<key>${ key }</key>\n<dict>${ themeX.indent( text ) }\n</dict>`;
+        return `\n<key>${ key }</key>\n<dict>${ themeX.indent( text ) }\n</dict>`
     }
 
 //
@@ -193,9 +195,9 @@
 
     function addPListSettingsArray ( array: string[ ] ) {
         let result = array.map( dict => {
-            return `\n<dict>${ themeX.indent( dict ) }\n</dict>`;
-        });
-        return `\n<key>settings</key>\n<array>${ themeX.indent( result.join('') ) }\n</array>`;
+            return `\n<dict>${ themeX.indent( dict ) }\n</dict>`
+        })
+        return `\n<key>settings</key>\n<array>${ themeX.indent( result.join('') ) }\n</array>`
     }
 
 // ────────────────────────────────────────────────────────────────────────────────

@@ -9,9 +9,9 @@
 // ─── IMPORTS ────────────────────────────────────────────────────────────────────
 //
 
-    import fs       = require('fs-extra');
-    import colors   = require('colors');
-    import path     = require('path');
+    import fs       = require('fs-extra')
+    import colors   = require('colors')
+    import path     = require('path')
 
 // ────────────────────────────────────────────────────────────────────────────────
 
@@ -31,8 +31,8 @@
 
     export function forkey ( object: Object, func: ( key: string ) => void ) {
         Object.keys( object ).forEach( key => {
-            func( key );
-        });
+            func( key )
+        })
     }
 
 //
@@ -40,8 +40,8 @@
 //
 
     export function getFileNameForTheme ( theme: ICurrentTheme ) {
-        let name = theme.theme.project.themes[ theme.index ].name;
-        return name.toLocaleLowerCase( ).replace( / /g, '' );
+        const name = theme.theme.project.themes[ theme.index ].name
+        return name.toLocaleLowerCase( ).replace( / /g, '' )
     }
 
 //
@@ -49,16 +49,16 @@
 //
 
     export function buildsDirectoryPath ( address: string ): string {
-        return path.join( getFolderContainingProject( address ), path.join( 'builds' ) );
+        return path.join( getFolderContainingProject( address ), path.join( 'builds' ) )
     }
 
-// 
+//
 // ─── GET BUILD DIR ──────────────────────────────────────────────────────────────
 //
 
     export function adaptorBuildDirectoryPath ( adaptor: IAdaptor,
                                                 address: string ): string {
-        return path.join( buildsDirectoryPath( address ), adaptor.editorId );
+        return path.join( buildsDirectoryPath( address ), adaptor.editorId )
     }
 
 //
@@ -66,7 +66,7 @@
 //
 
     export function getFolderContainingProject ( address: string ): string {
-        return address.replace( /\/(?:[^(\/)\\]|\\.)*$/, '' );
+        return address.replace( /\/(?:[^(\/)\\]|\\.)*$/, '' )
     }
 
 //
@@ -76,12 +76,12 @@
     export function forEachThemeDo ( project: IBundle.base,
                                      address: string,
                            generatorFunction: ( theme: ICurrentTheme ) => void ) {
-        for ( let __INDEX = 0; __INDEX < project.project.themes.length; __INDEX++ ) {
+        for ( const __INDEX = 0; __INDEX < project.project.themes.length; __INDEX++ ) {
             generatorFunction({
                 theme: project,
                 index: __INDEX,
                  path: address
-            });
+            })
         }
     }
 
@@ -90,19 +90,21 @@
 //
 
     export function parseColor ( theme: ICurrentTheme, color: string ): string {
-        color = color.toString( );
+        color = color.toString( )
 
         function onBadColor ( ) {
-            return ( theme.theme.project.themes[ theme.index ].baseColor === 'dark' )? '#FFFFFF' : '#000000';
+            return ( theme.theme.project.themes[ theme.index ].baseColor === 'dark' )
+                ? '#FFFFFF'
+                : '#000000'
         }
 
         if ( /^\#?[A-F0-9]{6}$/i.test( color ) ) {
-            return color.toString( ).startsWith('#')? color.toUpperCase( ) : `#${ color.toUpperCase( ) }`;
+            return color.toString( ).startsWith('#')? color.toUpperCase( ) : `#${ color.toUpperCase( ) }`
         } else if ( /^\.[a-z]([a-z0-9\-]*[a-z0-9])?$/i.test( color ) ) {
-            let v = theme.theme.project.themes[ theme.index ].colors[ color.substr( 1 ) ];
-            return v? `#${ v.toUpperCase( ) }` : onBadColor( );
+            let v = theme.theme.project.themes[ theme.index ].colors[ color.substr( 1 ) ].toString( )
+            return v? `#${ v.toUpperCase( ) }` : onBadColor( )
         }
-        return onBadColor( );
+        return onBadColor( )
     }
 
 //
@@ -110,7 +112,7 @@
 //
 
     export function report ( errorMessage: string ): void {
-        console.log(` ${ colors.red('✕') } ${ errorMessage}\n`);
+        console.log(` ${ colors.red('✕') } ${ errorMessage}\n`)
     }
 
 //
@@ -118,7 +120,7 @@
 //
 
     export function print ( input: any ): void {
-        console.log(` ${ colors.green('✓') } ${ input }\n`);
+        console.log(` ${ colors.green('✓') } ${ input }\n`)
     }
 
 //
@@ -127,7 +129,7 @@
 
     /** Indents the string... */
     export function indent ( text: string ): string {
-        return text.split('\n').map( line => '    ' + line ).join('\n');
+        return text.split('\n').map( line => '    ' + line ).join('\n')
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
@@ -147,14 +149,14 @@
 //
 
     export interface IAdaptor {
-        name: string;
-        adaptorPath: string;
+        name: string
+        adaptorPath: string
         id: string;
-        generate ( project: IBundle.base, address: string );
-        editorName: string;
-        editorId: string;
-        version: string;
-        author: string;
+        generate ( project: IBundle.base, address: string )
+        editorName: string
+        editorId: string
+        version: string
+        author: string
     }
 
 //
@@ -162,9 +164,9 @@
 //
 
     export interface ICurrentTheme {
-        theme: IBundle.base;
-        index: number;
-        path: string;
+        theme: IBundle.base
+        index: number
+        path: string
     }
 
 //
@@ -179,22 +181,22 @@
 
             export interface project {
                 /** Version of theme */
-                version: string;
+                version: string
 
                 /** Description of the theme */
-                description: string;
+                description: string
 
                 /** Author of the theme */
-                author: string;
+                author: string
 
                 /** Colorspace name */
-                colorSpaceName?: string;
+                colorSpaceName?: string
 
                 /** Theme plates */
-                themes: theme[ ];
+                themes: theme[ ]
 
                 /** Rules of the theme */
-                rules: rule[ ];
+                rules: rule[ ]
             }
 
         //
@@ -203,19 +205,19 @@
 
             export interface theme {
                 /** Theme name */
-                name: string;
+                name: string
 
                 /** UUID */
-                uuid: string;
+                uuid: string
 
                 /** BaseColor, is it dark or light */
-                baseColor: string;
+                baseColor: string
 
                 /** Base color settings for the color */
-                settings: themeSettings;
+                settings: themeSettings
 
                 /** Colors of the theme */
-                colors: Object;
+                colors: Object
             }
 
         //
@@ -223,13 +225,13 @@
         //
 
             export interface themeSettings {
-                background: string;
-                caret: string;
-                foreground: string;
-                invisibles: string;
-                lineHighlight: string;
-                selection: string;
-                comment: string;
+                background: string
+                caret: string
+                foreground: string
+                invisibles: string
+                lineHighlight: string
+                selection: string
+                comment: string
             }
 
         //
@@ -237,13 +239,13 @@
         //
 
             export interface rule {
-                name: string;
-                scope?: string;
-                scopes?: string[ ];
-                color: string;
-                bold?: boolean;
-                italic?: boolean;
-                underline?: boolean;
+                name: string
+                scope?: string
+                scopes?: string[ ]
+                color: string
+                bold?: boolean
+                italic?: boolean
+                underline?: boolean
             }
 
         //
@@ -259,9 +261,9 @@
         //
 
             export interface base {
-                project: project;
-                settings: settings;
-                path: string;
+                project: project
+                settings: settings
+                path: string
             }
 
         // ─────────────────────────────────────────────────────────────────
@@ -286,9 +288,9 @@
     /** Replaces some objects keys with their values in a text */
     export function replaceObjectsInString ( text: string, replacements: Object ) {
         text.replace( /\{\#[a-b\_0-9 ]+\#\}/gi, ( handle: string ) => {
-            console.log( handle );
-            return null;
-        });
+            console.log( handle )
+            return null
+        })
     }
 
 //
@@ -306,7 +308,7 @@
 
         // loading the file
         let fileContent = fs.readFileSync( template, 'utf8' );
-        if ( fileContent === null || fileContent === undefined ) return false;
+        if ( fileContent === null || fileContent === undefined ) return false
 
     }
 

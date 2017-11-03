@@ -9,20 +9,17 @@
 // ─── IMPORTS ────────────────────────────────────────────────────────────────────
 //
 
-    import themeX   = require('./themeX');
-    import fs       = require('fs');
-    import path     = require('path');
-    import jsen     = require('jsen');
+    import themeX   = require('./themeX')
+    import fs       = require('fs')
+    import path     = require('path')
+    import jsen     = require('jsen')
 
 //
 // ─── CHECKER ────────────────────────────────────────────────────────────────────
 //
 
     export = ( bundle: themeX.IBundle.base ): boolean => {
-        if ( !checkProject( bundle.project ) ) {
-            return false;
-        }
-        return true;
+        return checkProject( bundle.project )
     }
 
 //
@@ -31,9 +28,12 @@
 
     /** Checks to see if a given  */
     function checkProject ( project: themeX.IBundle.project ) {
-        let scheme = loadScheme( '../schemes/themeX.project.schema.json' );
-        let validate = jsen( scheme );
-        return validate( project )? true : false;
+        const scheme =
+            loadScheme( '../schemes/themeX.project.schema.json' )
+        const validate =
+            jsen( scheme )
+
+        return validate( project )
     }
 
 //
@@ -42,12 +42,12 @@
 
     function loadScheme ( scheme: string ) {
         try {
-            let file = fs.readFileSync(
+            const file = fs.readFileSync(
                 path.join( __dirname, scheme ), 'utf8'
-            );
-            return JSON.parse( file );
+            )
+            return JSON.parse( file )
         } catch ( err ) {
-            return null;
+            return null
         }
     }
 

@@ -10,42 +10,36 @@
 // ─── INCLUDES ───────────────────────────────────────────────────────────────────
 //
 
-    import themeX   = require('./themeX');
-    import loader   = require('./loader');
-    import builder  = require('./buildcore');
-    import CLITest  = require('./cli-test');
-    import size     = require('window-size');
+    import themeX   = require('./themeX')
+    import loader   = require('./loader')
+    import builder  = require('./buildcore')
+    import CLITest  = require('./cli-test')
+    import size     = require('window-size')
 
 //
 // ─── MAIN ───────────────────────────────────────────────────────────────────────
 //
 
     // starting the software here...
-    main( );
+    main( )
 
     /** Where the software starts. main basically acts as an arg switcher. */
     function main ( ) {
-        let args = process.argv.slice( 2 );
-        if ( args.length === 0 ) {
-            if ( process.cwd( ).toLowerCase( ).endsWith( '.themex' ) ) {
-                buildCWD( );
-
-            } else {
+        let args = process.argv.slice( 2 )
+        if ( args.length === 0 )
+            if ( process.cwd( ).toLowerCase( ).endsWith( '.themex' ) )
+                buildCWD( )
+            else
+                showHelp( )
+        else if ( args.length === 1 )
+            if ( args[ 0 ].toLowerCase( ).endsWith( '.themex' ) )
+                buildByFile( args[ 0 ] )
+            else if ( args[ 0 ] === 'test' )
+                process.exit( CLITest( ) )
+            else
                 showHelp( );
-            }
-        } else if ( args.length === 1 ) {
-            if ( args[ 0 ].toLowerCase( ).endsWith( '.themex' ) ) {
-                buildByFile( args[ 0 ] );
-
-            } else if ( args[ 0 ] === 'test' ) {
-                process.exit( CLITest( ) );
-
-            } else {
-                showHelp( );
-            }
-        } else {
-            showHelp( );
-        }
+        else
+            showHelp( )
     }
 
 //
@@ -61,9 +55,9 @@
 //
 
     function buildByFile ( file: string ): boolean {
-        printTitle( );
-        let bundle = loader.loadProjectByFile( file );
-        return builder( bundle, file );
+        printTitle( )
+        const bundle = loader.loadProjectByFile( file )
+        return builder( bundle, file )
     }
 
 //
@@ -71,7 +65,7 @@
 //
 
     function build ( bundle: themeX.IBundle.base ) {
-        themeX.report( "hello world" );
+        themeX.report( "hello world" )
     }
 
 //
@@ -79,18 +73,18 @@
 //
 
     function printTitle ( ) {
-        printHorizontalLine( );
+        printHorizontalLine( )
 
-        let spacings = '';
-        for ( let index = 0; index < Math.floor( size.width / 2 ) - 4; index++ ) {
-            spacings += '•';
-        }
-        spacings = spacings.rainbow;
+        let spacings = ''
+        for ( let index = 0; index < Math.floor( size.width / 2 ) - 4; index++ )
+            spacings += '•'
 
-        console.log( `${ spacings } themeX ${ spacings }` );
+        spacings = spacings.rainbow
 
-        printHorizontalLine( );
-        console.log('');
+        console.log( `${ spacings } themeX ${ spacings }` )
+
+        printHorizontalLine( )
+        console.log('')
     }
 
 //
@@ -98,11 +92,10 @@
 //
 
     function printHorizontalLine ( ) {
-        let line = '';
-        for ( let index = 0; index < size.width; index++ ) {
-            line += '\u2500';
-        }
-        console.log( line.cyan );
+        let line = ''
+        for ( let index = 0; index < size.width; index++ )
+            line += '\u2500'
+        console.log( line.cyan )
     }
 
 //

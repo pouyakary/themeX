@@ -9,28 +9,28 @@
 // ─── INCLUDES ───────────────────────────────────────────────────────────────────
 //
 
-    import themeX   = require('./themeX');
-    import loader   = require('./loader');
-    import checker  = require('./checkcore');
-    import fs       = require('fs');
-    import path     = require('path');
+    import themeX   = require('./themeX')
+    import loader   = require('./loader')
+    import checker  = require('./checkcore')
+    import fs       = require('fs')
+    import path     = require('path')
 
 //
 // ─── MAIN ───────────────────────────────────────────────────────────────────────
 //
 
     export = ( ): number => {
-        let file = findBundleAddress( );
+        const file = findBundleAddress( )
         if ( file != undefined ) {
-            let check = checker( loader.loadProjectByFile( file ) );
+            const check = checker( loader.loadProjectByFile( file ) )
 
             if ( check ) {
-                themeX.print('test: passed.');
-                return 0;
+                themeX.print('test: passed.')
+                return 0
 
             } else {
-                themeX.print('test: failed');
-                return 1;
+                themeX.print('test: failed')
+                return 1
             }
 
         } else {
@@ -43,11 +43,10 @@
 //
 
     function findBundleAddress ( ): string {
-        for ( let file of fs.readdirSync( process.cwd( ) ) ) {
-            if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
-                 return path.join( process.cwd( ), file );
-            }
-        }
+        for ( const file of fs.readdirSync( process.cwd( ) ) )
+            if ( file.toLowerCase( ).endsWith( '.themex' ) )
+                 return path.join( process.cwd( ), file )
+
         return undefined;
     }
 

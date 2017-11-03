@@ -11,19 +11,19 @@
 //
 
 
-    import themeX = require( './themeX' );
-    import check = require( './checkcore' );
-    import fs = require( 'fs' );
-    import path = require( 'path' );
-    import colors = require( 'colors' );
+    import themeX   = require( './themeX' )
+    import check    = require( './checkcore' )
+    import fs       = require( 'fs' )
+    import path     = require( 'path' )
+    import colors   = require( 'colors' )
 
 //
 // ─── BUILD ──────────────────────────────────────────────────────────────────────
 //
 
     export = ( project: themeX.IBundle.base, address: string ): boolean => {
-        if ( !check( project ) ) return false;
-        applyBuild( project, address );
+        if ( !check( project ) ) return false
+        applyBuild( project, address )
     }
 
 //
@@ -32,7 +32,7 @@
 
     function applyBuild ( project: themeX.IBundle.base, address: string ) {
         // setting up the build directory
-        setupBuildsDirectory( address );
+        setupBuildsDirectory( address )
 
         // running adaptors
         let adaptorDirectory = getAdaptorDirectoryLocation( );
@@ -44,10 +44,10 @@
                         adaptorDirectoryName,
                         address,
                         project
-                    );
+                    )
                 }
             })
-        });
+        })
     }
 
 //
@@ -60,23 +60,24 @@
         project: themeX.IBundle.base ) {
         try {
             // Loading the core.
-            let adaptorPath = path.join( adaptorDirectory, adaptorDirectoryName );
-            let adaptor = <themeX.IAdaptor>require( adaptorPath );
-            adaptor[ 'name' ] = adaptorDirectoryName;
-            adaptor[ 'adaptorPath' ] = adaptorPath;
-    
-    
+            const adaptorPath = path.join( adaptorDirectory, adaptorDirectoryName )
+            const adaptor = <themeX.IAdaptor>require( adaptorPath )
+            adaptor[ 'name' ] = adaptorDirectoryName
+            adaptor[ 'adaptorPath' ] = adaptorPath
+
+
             // Setting up the environment.
-            setupAdaptorEnvironment( adaptor, address );
-    
-    
+            setupAdaptorEnvironment( adaptor, address )
+
+
             // Running the adaptor.
-            themeX.print( `running adaptor ${adaptor.name.underline} (v${adaptor.version})` );
-            adaptor.generate( project, address );
-    
-    
+            themeX.print(
+                `running adaptor ${adaptor.name.underline} (v${adaptor.version})` )
+            adaptor.generate( project, address )
+
+
         } catch ( error ) {
-            themeX.report( `Could not generate theme` );
+            themeX.report( `Internal Error: "${ error }"` )
         }
     }
 
@@ -85,10 +86,9 @@
 //
 
     function setupBuildsDirectory ( address: string ) {
-        let dir = themeX.buildsDirectoryPath( address );
-        if ( !fs.existsSync( dir ) ) {
-            fs.mkdirSync( dir );
-        }
+        let dir = themeX.buildsDirectoryPath( address )
+        if ( !fs.existsSync( dir ) )
+            fs.mkdirSync( dir )
     }
 
 //
@@ -96,10 +96,10 @@
 //
 
     function setupAdaptorEnvironment ( adaptor: themeX.IAdaptor, address: string ) {
-        let projectDir = themeX.adaptorBuildDirectoryPath( adaptor, address );
-        if ( !fs.existsSync( projectDir ) ) {
-            fs.mkdirSync( projectDir );
-        }
+        const projectDir =
+            themeX.adaptorBuildDirectoryPath( adaptor, address )
+        if ( !fs.existsSync( projectDir ) )
+            fs.mkdirSync( projectDir )
     }
 
 //
@@ -107,9 +107,8 @@
 //
 
     function getAdaptorDirectoryLocation ( ): string {
-        return path.join( __dirname, 'adaptors' );
+        return path.join( __dirname, 'adaptors' )
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
 
-    

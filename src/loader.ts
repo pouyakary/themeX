@@ -10,10 +10,10 @@
 // ─── LOADINGS ───────────────────────────────────────────────────────────────────
 //
 
-    import themeX = require( './themeX' );
-    import jsYaml = require( 'js-yaml' );
-    import fs = require( 'fs' );
-    import path = require( 'path' );
+    import themeX   = require( './themeX' )
+    import jsYaml   = require( 'js-yaml' )
+    import fs       = require( 'fs' )
+    import path     = require( 'path' )
 
 //
 // ─── ENUMS ──────────────────────────────────────────────────────────────────────
@@ -28,7 +28,7 @@
 //
 
     export function loadProjectByCWD ( ) {
-        return loadProjectByFile( process.cwd( ) );
+        return loadProjectByFile( process.cwd( ) )
     }
 
 //
@@ -38,7 +38,7 @@
     /** Loads the project main yaml file */
     export function loadProjectByFile ( file: string ): themeX.IBundle.base {
         if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
-            themeX.print( 'parsing theme files' );
+            themeX.print( 'parsing theme files' )
             return {
                 project: <themeX.IBundle.project>importFileObject(
                     fileType.project, file ),
@@ -47,7 +47,7 @@
                 path: file
             }
         } else {
-            return undefined;
+            return undefined
         }
     }
 
@@ -56,11 +56,13 @@
 //
 
     function importFileObject ( kind: fileType, cwd: string ): Object {
-        let address: string;
-        address = ( kind == fileType.project ) ?
-            path.join( cwd, 'theme.yml' ) :
-            path.join( cwd, 'project.yml' );
-        return importYAML( address );
+        const address =
+            (( kind == fileType.project )
+                ? path.join( cwd, 'theme.yml' )
+                : path.join( cwd, 'project.yml' )
+                )
+
+        return importYAML( address )
     }
 
 //
@@ -69,14 +71,13 @@
 
     function importYAML ( address: string ): Object {
         if ( fs.existsSync( address ) ) {
-            let fileString = fs.readFileSync( address, 'utf8' );
-            let decodedObject = jsYaml.load( fileString );
-            return decodedObject;
+            const fileString = fs.readFileSync( address, 'utf8' )
+            const decodedObject = jsYaml.load( fileString )
+            return decodedObject
         } else {
-            return null;
+            return null
         }
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
 
-    

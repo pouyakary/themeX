@@ -10,21 +10,21 @@
 // ─── IMPORTS ────────────────────────────────────────────────────────────────────
 //
 
-    import themeX = require( '../../themeX' );
-    import tmTheme = require( '../../libs/tmTheme' );
-    import fs = require( 'fs' );
-    import path = require( 'path' );
+    import themeX = require( '../../themeX' )
+    import tmTheme = require( '../../libs/tmTheme' )
+    import fs = require( 'fs' )
+    import path = require( 'path' )
 
 //
 // ─── PACKAGE INFORMATION ────────────────────────────────────────────────────────
 //
 
-    export const id = 'org.karyfoundation.themeX.vscode';
-    export const editorName = 'Visual Studio Code';
+    export const id = 'org.karyfoundation.themeX.vscode'
+    export const editorName = 'Visual Studio Code'
     export const editorId = 'sublime'
     export const version = '1.0.0'
-    export const name = 'Visual Studio Code ThemeX Generator';
-    export const author = 'Kary Foundation, Inc.';
+    export const name = 'Visual Studio Code ThemeX Generator'
+    export const author = 'Kary Foundation, Inc.'
 
 //
 // ─── BUILDER FOR VISUAL STUDIO CODE ─────────────────────────────────────────────
@@ -43,13 +43,13 @@
 //
 
     function generateTheme ( theme: themeX.ICurrentTheme ) {
-        let file = fs.readFileSync(
-            `${this.adaptorPath}/templates/package.json`, 'utf8' );
+        const file = fs.readFileSync(
+            `${this.adaptorPath}/templates/package.json`, 'utf8' )
+
         return themeX.replaceObjectsInString( file, {
             name: 'hello-world-this-is-some-kind-of-crap'
-        });
+        })
     }
 
 // ────────────────────────────────────────────────────────────────────────────────
 
-    
