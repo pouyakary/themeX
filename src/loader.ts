@@ -10,10 +10,10 @@
 // ─── LOADINGS ───────────────────────────────────────────────────────────────────
 //
 
-    import themeX   = require( './themeX' )
-    import jsYaml   = require( 'js-yaml' )
-    import fs       = require( 'fs' )
-    import path     = require( 'path' )
+    import * as themeX  from './themeX'
+    import * as jsYaml  from 'js-yaml'
+    import * as fs      from 'fs'
+    import * as path    from 'path'
 
 //
 // ─── ENUMS ──────────────────────────────────────────────────────────────────────
