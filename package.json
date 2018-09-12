@@ -1,7 +1,7 @@
 {
   "name": "themex",
-  "version": "0.0.5",
-  "description": "The altimate UNIVERSAL syntax color theme generator that let's you build your color scheme in just one file and compile for a wide range of different editors",
+  "version": "0.0.6",
+  "description": "The ultimate UNIVERSAL syntax color theme generator that let's you build your color scheme in just one file and compile for a wide range of different editors",
   "bin": {
     "themex": "build/main.js"
   },
@@ -15,7 +15,7 @@
   "keywords": [
     "Color",
     "Themes",
-    "Syntaxt",
+    "Syntax",
     "Themes",
     "Color",
     "Schemes",
@@ -31,9 +31,9 @@
   "author": "pmkary",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/karyfoundation/themeX/issues"
+    "url": "https://github.com/pmkary/themeX/issues"
   },
-  "homepage": "https://github.com/karyfoundation/themeX#readme",
+  "homepage": "https://github.com/pmkary/themeX#readme",
   "dependencies": {
     "colors": "^1.1.2",
     "fs-extra": "^0.30.0",

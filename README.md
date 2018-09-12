@@ -27,8 +27,3 @@ Create a folder for your file theme. and then use:
 themex init
 ```
 To make the folder into a themeX project.
-
-<br/>
-<a href="http://www.karyfoundation.org/">
-    <img src="http://www.karyfoundation.org/foundation/logo/github-full-horse.png" width="250"/>
-</a>
