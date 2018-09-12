@@ -126,7 +126,7 @@
 
             let ruleForegroundColor = "#FF0000"
             try {
-                themeX.parseColor( theme, rule.color )
+                ruleForegroundColor = themeX.parseColor( theme, rule.color )
             } catch {
                 throw new Error( "Problem with color " + rule.color + " at rule: " + rule.name )
             }
