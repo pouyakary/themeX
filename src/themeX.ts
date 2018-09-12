@@ -1,8 +1,6 @@
 
 //
-// Theme - A general color scheme theme generator
-//  Copyright 2016 Kary Foundation, Inc. All Rights Reserved.
-//  Authored by Pouya Kary <k@karyfoundation.org>
+// Copyright 2016-present by Pouya Kary <kary@gnu.org> All rights reserved
 //
 
 //
@@ -76,7 +74,7 @@
     export function forEachThemeDo ( project: IBundle.base,
                                      address: string,
                            generatorFunction: ( theme: ICurrentTheme ) => void ) {
-        for ( const __INDEX = 0; __INDEX < project.project.themes.length; __INDEX++ ) {
+        for ( let __INDEX = 0; __INDEX < project.project.themes.length; __INDEX++ ) {
             generatorFunction({
                 theme: project,
                 index: __INDEX,

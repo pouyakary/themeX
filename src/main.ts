@@ -1,9 +1,7 @@
 #! /usr/bin/env node
 
 //
-// Theme - A general color scheme theme generator
-//  Copyright 2016 Kary Foundation, Inc. All Rights Reserved.
-//  Authored by Pouya Kary <k@karyfoundation.org>
+// Copyright 2016-present by Pouya Kary <kary@gnu.org> All rights reserved
 //
 
 //
@@ -31,13 +29,15 @@
                 buildCWD( )
             else
                 showHelp( )
+
         else if ( args.length === 1 )
             if ( args[ 0 ].toLowerCase( ).endsWith( '.themex' ) )
                 buildByFile( args[ 0 ] )
             else if ( args[ 0 ] === 'test' )
                 process.exit( CLITest( ) )
             else
-                showHelp( );
+                showHelp( )
+
         else
             showHelp( )
     }
@@ -113,7 +113,7 @@
             "  │  https://github.com/karyfoundation/themeX/wiki         │\n" +
             "  │                                                        │\n" +
             "  └────────────────────────────────────────────────────────┘\n"
-        );
+        )
     }
 
 // ────────────────────────────────────────────────────────────────────────────────

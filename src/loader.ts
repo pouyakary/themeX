@@ -1,9 +1,6 @@
 
-
 //
-// Theme - A general color scheme theme generator
-//  Copyright 2016 Kary Foundation, Inc. All Rights Reserved.
-//  Authored by Pouya Kary <k@karyfoundation.org>
+// Copyright 2016-present by Pouya Kary <kary@gnu.org> All rights reserved
 //
 
 //
@@ -40,7 +37,7 @@
         if ( file.toLowerCase( ).endsWith( '.themex' ) ) {
             themeX.print( 'parsing theme files' )
             return {
-                project: <themeX.IBundle.project>importFileObject(
+                project: <themeX.IBundle.project> importFileObject(
                     fileType.project, file ),
                 settings: <themeX.IBundle.settings>importFileObject(
                     fileType.settings, file ),

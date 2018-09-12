@@ -1,8 +1,6 @@
 
 //
-// Theme - A general color scheme theme generator
-//  Copyright 2016 Kary Foundation, Inc. All Rights Reserved.
-//  Authored by Pouya Kary <k@karyfoundation.org>
+// Copyright 2016-present by Pouya Kary <kary@gnu.org> All rights reserved
 //
 
 //
@@ -38,7 +36,7 @@
 
     function generateTheme ( ): string {
         // adding header
-        let themeXML: string[ ] = [ ]
+        let themeXML = new Array<string>( )
 
         // adding the name
         themeXML.push(
@@ -59,7 +57,7 @@
 //
 
     function generateTmThemeSettingsArray ( ): string {
-        let settings: string[ ] = [ ]
+        let settings = new Array<string>( )
         // main settings
         settings.push( generateMainColorSchemeSettings( ) )
 
@@ -112,45 +110,54 @@
 //
 
     function generateRuleXML ( rule: themeX.IBundle.rule ): string {
-        // init name
-        let result = [ addPListKeyInline( 'name', rule.name ) ]
 
-        // adding the scope
-        if ( rule.scope !== null && rule.scope !== undefined )
-            result.push( addPListKeyInline( 'scope', rule.scope ) )
-        else if ( rule.scopes !== null && rule.scopes !== undefined )
-            result.push( addPListKeyInline('scope', rule.scopes.join(', ') ) )
-        else {
-            themeX.report( `bad scope definition: "${ rule.name }".`)
-            return '';
-        }
+            // init name
+            let result = [ addPListKeyInline( 'name', rule.name ) ]
 
-        // adding the color
-        const settings: string[ ] = [
-            addPListKeyInline('foreground', themeX.parseColor( theme, rule.color ) )
-        ]
-
-        // adding style info
-        let styleSettings = '';
-        [ 'bold', 'italic', 'underline' ].forEach( style => {
-            if ( rule[ style ] === true ) {
-                styleSettings = `${ styleSettings } ${ style }`
+            // adding the scope
+            if ( rule.scope !== null && rule.scope !== undefined )
+                result.push( addPListKeyInline( 'scope', rule.scope ) )
+            else if ( rule.scopes !== null && rule.scopes !== undefined )
+                result.push( addPListKeyInline('scope', rule.scopes.join(', ') ) )
+            else {
+                themeX.report( `bad scope definition: "${ rule.name }".`)
+                return '';
             }
-        })
-        if ( styleSettings !== '' ) {
-            settings.push(
-                addPListKeyInline( 'fontStyle', styleSettings )
-            )
-        }
 
-        // configuring settings
-        result.push(
-            addPListKeyBlock('settings',
-                settings.join('')
-        ))
+            let ruleForegroundColor = "#FF0000"
+            try {
+                themeX.parseColor( theme, rule.color )
+            } catch {
+                throw new Error( "Problem with color " + rule.color + " at rule: " + rule.name )
+            }
 
-        // done
-        return result.join('')
+            // adding the color
+            const settings: string[ ] = [
+                addPListKeyInline('foreground', ruleForegroundColor )
+            ]
+
+            // adding style info
+            let styleSettings = '';
+            [ 'bold', 'italic', 'underline' ].forEach( style => {
+                if ( rule[ style ] === true ) {
+                    styleSettings = `${ styleSettings } ${ style }`
+                }
+            })
+            if ( styleSettings !== '' ) {
+                settings.push(
+                    addPListKeyInline( 'fontStyle', styleSettings )
+                )
+            }
+
+            // configuring settings
+            result.push(
+                addPListKeyBlock('settings',
+                    settings.join('')
+            ))
+
+            // done
+            return result.join('')
+
     }
 
 //

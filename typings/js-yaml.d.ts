@@ -7,10 +7,8 @@ declare namespace jsyaml {
 	export function safeLoad(str: string, opts?: LoadOptions): any;
 	export function load(str: string, opts?: LoadOptions): any;
 
-	export class Type implements TypeConstructorOptions {
-			constructor(tag: string, opts?: TypeConstructorOptions);
-			tag: string;
-	}
+	export type Type = any
+
 	export class Schema {
 		constructor(definition: SchemaDefinition);
 		public static create(args: any[]): Schema;

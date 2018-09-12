@@ -1,8 +1,6 @@
 
 //
-// Theme - A general color scheme theme generator
-//  Copyright 2016 Kary Foundation, Inc. All Rights Reserved.
-//  Authored by Pouya Kary <k@karyfoundation.org>
+// Copyright 2016-present by Pouya Kary <kary@gnu.org> All rights reserved
 //
 
 //

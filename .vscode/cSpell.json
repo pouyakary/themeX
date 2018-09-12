@@ -6,17 +6,18 @@
     "language": "en",
     // words - list of words to be always considered correct
     "words": [
-        "invisibles",
-        "themex",
-        "forkeys",
-        "jsen",
-        "checkcore",
-        "buildcore",
         "adptorx",
-        "PLIST",
-        "FFFFFF",
+        "buildcore",
+        "checkcore",
         "DOCTYPE",
-        "forkey"
+        "FFFFFF",
+        "forkey",
+        "forkeys",
+        "invisibles",
+        "jsen",
+        "PLIST",
+        "Pouya",
+        "themex"
     ],
     // flagWords - list of words to be always considered incorrect
     // This is useful for offensive words and common spelling errors.
