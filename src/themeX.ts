@@ -96,7 +96,7 @@
                 : '#000000'
         }
 
-        if ( /^\#?[A-F0-9]{6}$/i.test( color ) ) {
+        if ( /^\#?[A-F0-9]{6}(?:[A-F0-9]{2})?$/i.test( color ) ) {
             return color.toString( ).startsWith('#')? color.toUpperCase( ) : `#${ color.toUpperCase( ) }`
         } else if ( /^\.[a-z]([a-z0-9\-]*[a-z0-9])?$/i.test( color ) ) {
             let v = theme.theme.project.themes[ theme.index ].colors[ color.substr( 1 ) ].toString( )
