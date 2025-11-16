@@ -37,7 +37,7 @@
   "dependencies": {
     "colors": "^1.1.2",
     "fs-extra": "^0.30.0",
-    "js-yaml": "^3.6.1",
+    "js-yaml": "^4.1.1",
     "jsen": "^0.6.1",
     "window-size": "^0.2.0"
   }
