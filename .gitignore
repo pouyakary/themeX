@@ -1,2 +1,22 @@
-build/*
-node_modules/*
+# Build output
+/dist/
+
+# Go workspace files
+go.work
+go.work.sum
+
+# Test / coverage artifacts
+*.test
+*.out
+coverage.txt
+coverage.html
+
+# Editor / OS cruft
+.DS_Store
+.vscode/
+.idea/
+*.swp
+*~
+
+# Built VSCode extensions
+*.vsix
