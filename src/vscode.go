@@ -49,6 +49,7 @@ type Contributes struct {
 }
 
 type ThemeContribution struct {
+	Id      string `json:"id,omitempty"`
 	Label   string `json:"label"`
 	UITheme string `json:"uiTheme"`
 	Path    string `json:"path"`
@@ -76,6 +77,7 @@ func GenerateVSCode(b *Bundle) error {
 		}
 
 		contributions = append(contributions, ThemeContribution{
+			Id:      t.UUID,
 			Label:   t.Name,
 			UITheme: uiThemeFor(t),
 			Path:    "./" + fileName,
@@ -131,6 +133,15 @@ func buildVSCodeTheme(t *Theme, rules []Rule) VSCodeTheme {
 	}
 
 	for _, r := range rules {
+		if r.Scope == "" && len(r.Scopes) == 0 {
+			print(fmt.Sprintf("warning: skipping rule %q (no scope/socpes)", r.Name))
+			continue
+		}
+		if r.Color == "" {
+			print(fmt.Sprintf("warning: skipping rule %q (no color)", r.Name))
+			continue
+		}
+
 		tc := TokenColor{
 			Name:     r.Name,
 			Settings: TokenSettings{Foreground: ResolveColor(t, r.Color)},

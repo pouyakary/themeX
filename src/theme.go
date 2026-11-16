@@ -211,12 +211,8 @@ func Check(b *Bundle) error {
 		if r.Name == "" {
 			return fmt.Errorf("rule %d: missing 'name'", i)
 		}
-		if r.Scope == "" && len(r.Scopes) == 0 {
-			return fmt.Errorf("rule %q: missing 'scope' or 'scopes'", r.Name)
-		}
-		if r.Color == "" {
-			return fmt.Errorf("rule %q: missing 'color'", r.Name)
-		}
+		// Rules without a scope (e.g. a typo'd `socpe:`) are skipped at
+		// generation time with a warning, not a hard error.
 	}
 	return nil
 }

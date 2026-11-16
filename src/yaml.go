@@ -30,8 +30,9 @@ func yamlTokenize(s string) []yamlToken {
 		}
 		line = yamlStripComment(line)
 		line = strings.TrimRight(line, " \t")
-		if strings.TrimSpace(line) == "" {
-			continue
+		trimmed := strings.TrimSpace(line)
+		if trimmed == "" || trimmed == "---" || trimmed == "..." {
+			continue // blank line or YAML document marker
 		}
 		indent := 0
 		for indent < len(line) && line[indent] == ' ' {
